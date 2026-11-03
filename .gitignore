@@ -38,3 +38,9 @@ node_modules/
 
 # UI dist folder
 src/machine_worklist/__dist__/
+# Workshop tooling: kept on disk, not part of the app's source
+.agents/
+.claude/
+.workshop/
+AGENTS.md
+CLAUDE.md
