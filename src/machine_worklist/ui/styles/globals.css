@@ -1,84 +1,106 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource-variable/ibm-plex-sans";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F7F6F2;
-  --foreground: #14232B;
+  /* Crisp light: cool white ground, white work surfaces, petrol shell, amber attention */
+  --background: #F4F6F8;
+  --foreground: #0F1E26;
   --card: #FFFFFF;
-  --card-foreground: #14232B;
+  --card-foreground: #0F1E26;
   --popover: #FFFFFF;
-  --popover-foreground: #14232B;
-  --primary: #14232B;
+  --popover-foreground: #0F1E26;
+  --primary: #0E3B47;
   --primary-foreground: #FFFFFF;
-  --secondary: #ECEAE4;
-  --secondary-foreground: #14232B;
-  --muted: #ECEAE4;
-  --muted-foreground: #4D5B61;
-  --accent: #ECEAE4;
-  --accent-foreground: #14232B;
-  --destructive: #A3261C;
+  --secondary: #EAEEF1;
+  --secondary-foreground: #0F1E26;
+  --muted: #EEF1F4;
+  --muted-foreground: #4F5F68;
+  --accent: #E7EEF1;
+  --accent-foreground: #0F1E26;
+  --destructive: #B42318;
   --destructive-foreground: #FFFFFF;
   --signal: #B45309;
-  --signal-soft: #FBEBD6;
-  --success: #1B6E3A;
-  --success-soft: #DDEFE2;
-  --border: #D6D3CB;
-  --input: #8A949A;
-  --ring: #1F5FD6;
-  --chart-1: #2B4A57;
-  --chart-2: #B45309;
-  --chart-3: #8A949A;
-  --chart-4: #D6D3CB;
-  --chart-5: #4D5B61;
-  --radius: 0.375rem;
-  --sidebar: #F7F6F2;
-  --sidebar-foreground: #14232B;
-  --sidebar-primary: #14232B;
+  --signal-strong: #D97706;
+  --signal-soft: #FDF0DC;
+  --signal-ink: #7A3A06;
+  --success: #1A7F43;
+  --success-soft: #DDF3E5;
+  --critical-soft: #FDE7E5;
+  --border: #DCE2E7;
+  --input: #B7C2CA;
+  --ring: #0E7490;
+  --track: #E6EBEF;
+  --shell: #0E3B47;
+  --shell-raised: #15505F;
+  --shell-line: #2A6475;
+  --shell-foreground: #F2F7F8;
+  --shell-muted: #A9C4CB;
+  --chart-1: #0E5A6B;
+  --chart-2: #D97706;
+  --chart-3: #8796A0;
+  --chart-4: #DCE2E7;
+  --chart-5: #4F5F68;
+  --radius: 0.625rem;
+  --sidebar: #F4F6F8;
+  --sidebar-foreground: #0F1E26;
+  --sidebar-primary: #0E3B47;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #ECEAE4;
-  --sidebar-accent-foreground: #14232B;
-  --sidebar-border: #D6D3CB;
-  --sidebar-ring: #1F5FD6;
+  --sidebar-accent: #EAEEF1;
+  --sidebar-accent-foreground: #0F1E26;
+  --sidebar-border: #DCE2E7;
+  --sidebar-ring: #0E7490;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: #0B151A;
+  --foreground: #E6EEF1;
+  --card: #111E24;
+  --card-foreground: #E6EEF1;
+  --popover: #111E24;
+  --popover-foreground: #E6EEF1;
+  --primary: #5CC3D6;
+  --primary-foreground: #06232B;
+  --secondary: #1A2A31;
+  --secondary-foreground: #E6EEF1;
+  --muted: #16252C;
+  --muted-foreground: #9BB0B8;
+  --accent: #1A2C34;
+  --accent-foreground: #E6EEF1;
+  --destructive: #F0705F;
+  --destructive-foreground: #1A0705;
+  --signal: #F5A524;
+  --signal-strong: #F5A524;
+  --signal-soft: #3A2A10;
+  --signal-ink: #FBD38D;
+  --success: #4ACB7E;
+  --success-soft: #12301F;
+  --critical-soft: #3A1714;
+  --border: #23343C;
+  --input: #3A4F59;
+  --ring: #5CC3D6;
+  --track: #22333B;
+  --shell: #0A2830;
+  --shell-raised: #103741;
+  --shell-line: #1E4E5A;
+  --shell-foreground: #EAF4F6;
+  --shell-muted: #93B3BB;
+  --chart-1: #5CC3D6;
+  --chart-2: #F5A524;
+  --chart-3: #6E848E;
+  --chart-4: #23343C;
+  --chart-5: #9BB0B8;
+  --sidebar: #0B151A;
+  --sidebar-foreground: #E6EEF1;
+  --sidebar-primary: #5CC3D6;
+  --sidebar-primary-foreground: #06232B;
+  --sidebar-accent: #1A2A31;
+  --sidebar-accent-foreground: #E6EEF1;
+  --sidebar-border: #23343C;
+  --sidebar-ring: #5CC3D6;
 }
 
 @theme inline {
@@ -131,17 +153,33 @@
 
 @theme inline {
   --color-signal: var(--signal);
+  --color-signal-strong: var(--signal-strong);
   --color-signal-soft: var(--signal-soft);
+  --color-signal-ink: var(--signal-ink);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
-  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-critical-soft: var(--critical-soft);
+  --color-track: var(--track);
+  --color-shell: var(--shell);
+  --color-shell-raised: var(--shell-raised);
+  --color-shell-line: var(--shell-line);
+  --color-shell-foreground: var(--shell-foreground);
+  --color-shell-muted: var(--shell-muted);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 }
 
 /* Browser surfaces carry the palette too */
 html { color-scheme: light; }
-body { font-family: var(--font-sans); font-feature-settings: "tnum" 1; }
+html.dark { color-scheme: dark; }
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+}
 ::selection { background: var(--signal-soft); color: var(--foreground); }
-input, textarea { caret-color: var(--signal); }
-:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-* { scrollbar-color: #B9B5AB transparent; scrollbar-width: thin; }
+input, textarea, select { caret-color: var(--ring); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
+* { scrollbar-color: var(--input) transparent; scrollbar-width: thin; }
+a { text-underline-offset: 3px; }

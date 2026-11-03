@@ -78,13 +78,13 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
     <aside
       aria-label="Ask the data"
       className={cn(
-        "fixed inset-y-0 right-0 z-40 flex w-full max-w-[460px] flex-col border-l border-border bg-card shadow-xl transition-[transform,visibility] duration-200",
+        "fixed inset-y-0 right-0 z-40 flex w-full max-w-[480px] flex-col border-l border-border bg-card shadow-[-12px_0_32px_-12px_rgb(15_30_38/0.25)] transition-[transform,visibility] duration-200",
         open ? "visible translate-x-0" : "invisible translate-x-full shadow-none",
       )}
     >
       <header className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
         <div>
-          <h2 className="font-semibold">Ask the data</h2>
+          <h2 className="text-lg font-semibold">Ask the data</h2>
           <p className="text-xs text-muted-foreground">Genie over sensors, work orders, defects, the score and model risk. Uses the app's data access.</p>
         </div>
         <div className="flex gap-1">
@@ -107,7 +107,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
               <button
                 key={s}
                 onClick={() => ask(s)}
-                className="block w-full rounded-md border border-border px-3 py-2 text-left hover:border-foreground/40 hover:bg-muted/60"
+                className="block w-full rounded-lg border border-border px-3.5 py-2.5 text-left transition-colors hover:border-foreground/30 hover:bg-muted/70"
               >
                 {s}
               </button>
@@ -117,7 +117,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
 
         {turns.map((t, i) => (
           <div key={i} className="space-y-2">
-            <p className="ml-8 rounded-md bg-signal-soft px-3 py-2">{t.question}</p>
+            <p className="ml-10 rounded-xl rounded-br-sm bg-shell px-3.5 py-2.5 text-shell-foreground">{t.question}</p>
             {!t.answer && !t.error && <p className="animate-pulse text-muted-foreground">Genie is writing the query…</p>}
             {t.error && (
               <p role="alert" className="text-destructive">
@@ -164,7 +164,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
           rows={2}
           maxLength={1000}
           placeholder="e.g. Which presses in Bremen ran hottest last week?"
-          className="block flex-1 resize-none rounded-md border border-input bg-card px-2.5 py-2 text-sm placeholder:text-muted-foreground"
+          className="block flex-1 resize-none rounded-lg border border-input bg-card px-3 py-2 text-[0.9375rem] placeholder:text-muted-foreground"
         />
         <Button type="submit" size="sm" disabled={!draft.trim() || m.isPending} aria-label="Ask">
           <Send className="size-4" aria-hidden />
@@ -224,8 +224,8 @@ function Answer({ a }: { a: AskOut }) {
 
 export function AskButton({ onClick }: { onClick: () => void }) {
   return (
-    <Button size="sm" variant="outline" onClick={onClick}>
-      <MessageSquareText className="size-4" aria-hidden /> Ask the data
+    <Button onClick={onClick} className="rounded-lg bg-shell-foreground text-shell shadow-none hover:bg-white">
+      <MessageSquareText aria-hidden /> Ask the data
     </Button>
   );
 }
