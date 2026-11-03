@@ -1,0 +1,32 @@
+{
+  "assumptions": [],
+  "attendee": "labuser+42@awsbricks.com",
+  "brief_revision": 1,
+  "decisions": [],
+  "direction": null,
+  "evidence": {},
+  "facts": [
+    {
+      "at": "2026-11-03T20:36:16Z",
+      "by": "attendee",
+      "text": "Action worklist app on manufacturing data: rank machines needing attention, with Lakebase write-back; Genie chat as slice 2"
+    }
+  ],
+  "history": [],
+  "outcome": null,
+  "path": {
+    "at": "2026-11-03T20:37:01Z",
+    "chosen_by": "attendee",
+    "source": null,
+    "value": "rapid"
+  },
+  "phase": "build",
+  "project": "machine-worklist",
+  "questions": [],
+  "requests": [],
+  "revision": 3,
+  "schema": "workshop-design-workflow",
+  "success_criteria": [],
+  "version": 1,
+  "workflow_version": 2
+}

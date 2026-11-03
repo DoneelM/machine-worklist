@@ -1,0 +1,1 @@
+../../../../../.agents/skills/impeccable/reference/degraded/manual-edit-applier.md

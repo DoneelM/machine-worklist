@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from functools import lru_cache
 
@@ -17,7 +17,7 @@ from ._config import logger
 async def _chain_dep_lifespans(
     deps: list[LifespanDependency],
     app: FastAPI,
-) -> AsyncIterator[None]:
+) -> AsyncGenerator[None, None]:
     """Chain multiple dependency lifespans into a single nested context manager."""
     if not deps:
         yield

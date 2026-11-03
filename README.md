@@ -66,3 +66,17 @@ databricks bundle deploy -p <your-profile>
 ---
 
 <p align="center">Built with ❤️ using <a href="https://github.com/databricks-solutions/apx">apx</a></p>
+
+_What this is for:_ (one line — the agent fills this in as soon as it knows)
+
+_Live URL:_ (added once the app is deployed)
+
+<!-- workshop-brief:v1 -->
+## Workshop brief
+
+- Original request: (fill from the attendee's words)
+- First version and primary action: (fill as the task becomes known)
+- Stated facts: (reuse what the attendee supplied)
+- Demo assumptions: (label sample data, integration and storage defaults)
+- Checks: (observed results and anything still unverified)
+<!-- /workshop-brief -->

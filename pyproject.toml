@@ -51,3 +51,7 @@ version = "{version}"
 [tool.hatch.build]
 artifacts = ["src/machine_worklist/__dist__", "src/machine_worklist/_metadata.py"]
 exclude = ["src/machine_worklist/ui"]
+
+[tool.ty.src]
+# Installed workshop skills are tools, not application source.
+exclude = [".agents/skills/**", ".claude/skills/**"]
