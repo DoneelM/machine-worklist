@@ -12,6 +12,7 @@ import time
 from typing import Any, cast
 
 import psycopg
+from psycopg import sql
 from psycopg.rows import dict_row
 from databricks.sdk import WorkspaceClient
 
@@ -81,11 +82,11 @@ def _grant_readers(conn: psycopg.Connection[dict[str, Any]]) -> None:
     WORKLIST_READ_ROLES is a comma-separated list of Lakebase Postgres roles (usually emails).
     """
     for role in filter(None, (r.strip() for r in os.environ.get("WORKLIST_READ_ROLES", "").split(","))):
-        q = '"' + role.replace('"', '""') + '"'
+        q = sql.Identifier(role)
         try:
-            conn.execute(f"GRANT USAGE ON SCHEMA worklist TO {q}")
-            conn.execute(f"GRANT SELECT ON ALL TABLES IN SCHEMA worklist TO {q}")
-            conn.execute(f"ALTER DEFAULT PRIVILEGES IN SCHEMA worklist GRANT SELECT ON TABLES TO {q}")
+            conn.execute(sql.SQL("GRANT USAGE ON SCHEMA worklist TO {}").format(q))
+            conn.execute(sql.SQL("GRANT SELECT ON ALL TABLES IN SCHEMA worklist TO {}").format(q))
+            conn.execute(sql.SQL("ALTER DEFAULT PRIVILEGES IN SCHEMA worklist GRANT SELECT ON TABLES TO {}").format(q))
             conn.commit()
         except psycopg.Error as e:  # e.g. the role doesn't exist on this branch; never block the app
             conn.rollback()
