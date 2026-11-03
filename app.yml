@@ -1,1 +1,6 @@
 command: ["uvicorn", "machine_worklist.backend.app:app", "--workers", "2"]
+env:
+  - name: MACHINE_WORKLIST_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: LAKEBASE_ENDPOINT
+    valueFrom: postgres

@@ -28,6 +28,8 @@ class AppConfig(BaseSettings):
         env_nested_delimiter="__",
     )
     app_name: str = Field(default=app_name)
+    warehouse_id: str = Field(default="")
+    data_schema: str = Field(default="nzlabs_031.default")
 
     @property
     def static_assets_path(self) -> Path:

@@ -1,14 +1,15 @@
 [project]
 name = "machine-worklist"
 dynamic = ["version"]
-description = "Add your description here"
+description = "Machine attention worklist"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.119.0",
     "pydantic-settings>=2.11.0",
     "uvicorn>=0.37.0",
-    "databricks-sdk>=0.74.0",
+    "databricks-sdk>=0.81.0",
+    "psycopg[binary]>=3.2.0",
 ]
 
 [dependency-groups]

@@ -1,42 +1,49 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #F7F6F2;
+  --foreground: #14232B;
+  --card: #FFFFFF;
+  --card-foreground: #14232B;
+  --popover: #FFFFFF;
+  --popover-foreground: #14232B;
+  --primary: #14232B;
+  --primary-foreground: #FFFFFF;
+  --secondary: #ECEAE4;
+  --secondary-foreground: #14232B;
+  --muted: #ECEAE4;
+  --muted-foreground: #4D5B61;
+  --accent: #ECEAE4;
+  --accent-foreground: #14232B;
+  --destructive: #A3261C;
+  --destructive-foreground: #FFFFFF;
+  --signal: #B45309;
+  --signal-soft: #FBEBD6;
+  --success: #1B6E3A;
+  --success-soft: #DDEFE2;
+  --border: #D6D3CB;
+  --input: #8A949A;
+  --ring: #1F5FD6;
+  --chart-1: #2B4A57;
+  --chart-2: #B45309;
+  --chart-3: #8A949A;
+  --chart-4: #D6D3CB;
+  --chart-5: #4D5B61;
+  --radius: 0.375rem;
+  --sidebar: #F7F6F2;
+  --sidebar-foreground: #14232B;
+  --sidebar-primary: #14232B;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #ECEAE4;
+  --sidebar-accent-foreground: #14232B;
+  --sidebar-border: #D6D3CB;
+  --sidebar-ring: #1F5FD6;
 }
 
 .dark {
@@ -121,3 +128,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme inline {
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Browser surfaces carry the palette too */
+html { color-scheme: light; }
+body { font-family: var(--font-sans); font-feature-settings: "tnum" 1; }
+::selection { background: var(--signal-soft); color: var(--foreground); }
+input, textarea { caret-color: var(--signal); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+* { scrollbar-color: #B9B5AB transparent; scrollbar-width: thin; }

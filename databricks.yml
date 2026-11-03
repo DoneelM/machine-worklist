@@ -13,8 +13,18 @@ resources:
   apps:
     machine-worklist-app:
       name: "machine-worklist"
-      description: "machine-worklist created with apx"
+      description: "Ranked machine attention worklist with claim / note / resolve"
       source_code_path: ./.build
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: 41894588071c4fa4
+            permission: CAN_USE
+        - name: postgres
+          postgres:
+            branch: projects/machine-worklist/branches/production
+            database: projects/machine-worklist/branches/production/databases/databricks-postgres
+            permission: CAN_CONNECT_AND_CREATE
 
 targets:
   dev:

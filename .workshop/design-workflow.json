@@ -1,8 +1,14 @@
 {
   "assumptions": [],
   "attendee": "labuser+42@awsbricks.com",
-  "brief_revision": 1,
-  "decisions": [],
+  "brief_revision": 2,
+  "decisions": [
+    {
+      "at": "2026-11-03T20:39:29Z",
+      "by": "attendee",
+      "text": "Score weights 40/35/25 (vibration/defects/yield); top_driver = highest unweighted percentile"
+    }
+  ],
   "direction": null,
   "evidence": {},
   "facts": [
@@ -24,7 +30,7 @@
   "project": "machine-worklist",
   "questions": [],
   "requests": [],
-  "revision": 3,
+  "revision": 4,
   "schema": "workshop-design-workflow",
   "success_criteria": [],
   "version": 1,

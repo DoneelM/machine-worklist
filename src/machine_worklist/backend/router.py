@@ -1,9 +1,32 @@
-from databricks.sdk.service.iam import User as UserOut
+import json
 
+from databricks.sdk.service.iam import User as UserOut
+from fastapi import HTTPException
+
+from . import actions
 from .core import Dependencies, create_router
-from .models import VersionOut
+from .models import (
+    ActionIn,
+    ActionState,
+    FiltersOut,
+    MachineDetailOut,
+    VersionOut,
+    WorklistItem,
+    WorklistOut,
+)
+from .warehouse import query
 
 router = create_router()
+
+ITEM_COLS = (
+    "machine_id, plant, line, machine_type, attention_score, top_driver, vib_trend, "
+    "defects_per_1k, yield_shortfall, serious_defects, critical_defects"
+)
+
+
+def _item(row: dict, states: dict) -> WorklistItem:
+    state = states.get(row["machine_id"])
+    return WorklistItem(**row, action=ActionState(**state) if state else ActionState())
 
 
 @router.get("/version", response_model=VersionOut, operation_id="version")
@@ -14,3 +37,74 @@ async def version():
 @router.get("/current-user", response_model=UserOut, operation_id="currentUser")
 def me(user_ws: Dependencies.UserClient):
     return user_ws.current_user.me()
+
+
+@router.get("/filters", response_model=FiltersOut, operation_id="getFilters")
+def filters(ws: Dependencies.Client, config: Dependencies.Config):
+    rows = query(
+        ws,
+        config.warehouse_id,
+        f"SELECT collect_set(plant) plants, collect_set(machine_type) types FROM {config.data_schema}.machine_attention",
+    )
+    return FiltersOut(
+        plants=sorted(json.loads(rows[0]["plants"])), machine_types=sorted(json.loads(rows[0]["types"]))
+    )
+
+
+@router.get("/worklist", response_model=WorklistOut, operation_id="getWorklist")
+def worklist(ws: Dependencies.Client, config: Dependencies.Config, plant: str = "", machine_type: str = ""):
+    rows = query(
+        ws,
+        config.warehouse_id,
+        f"SELECT {ITEM_COLS}, as_of FROM {config.data_schema}.machine_attention "
+        "WHERE (:plant = '' OR plant = :plant) AND (:mtype = '' OR machine_type = :mtype) "
+        "ORDER BY attention_score DESC",
+        {"plant": plant, "mtype": machine_type},
+    )
+    states = actions.statuses(ws)
+    as_of = rows[0].pop("as_of") if rows else None
+    for r in rows[1:]:
+        r.pop("as_of", None)
+    return WorklistOut(
+        as_of=as_of or "1970-01-01T00:00:00",
+        actions_enabled=actions.enabled(),
+        items=[_item(r, states) for r in rows],
+    )
+
+
+@router.get("/machines/{machine_id}", response_model=MachineDetailOut, operation_id="getMachine")
+def machine(machine_id: str, ws: Dependencies.Client, config: Dependencies.Config):
+    rows = query(
+        ws,
+        config.warehouse_id,
+        f"SELECT {ITEM_COLS}, vib_recent, vib_baseline, temp_recent, units_planned, units_produced "
+        f"FROM {config.data_schema}.machine_attention WHERE machine_id = :id",
+        {"id": machine_id},
+    )
+    if not rows:
+        raise HTTPException(404, f"Machine {machine_id} not found")
+    daily = query(
+        ws,
+        config.warehouse_id,
+        f"SELECT * FROM {config.data_schema}.machine_daily WHERE machine_id = :id ORDER BY day",
+        {"id": machine_id},
+    )
+    row = rows[0]
+    extra = {k: row.pop(k) for k in ("vib_recent", "vib_baseline", "temp_recent", "units_planned", "units_produced")}
+    states = actions.statuses(ws) if actions.enabled() else {}
+    return MachineDetailOut(
+        item=_item(row, states),
+        **extra,
+        daily=daily,
+        history=actions.history(ws, machine_id),
+    )
+
+
+@router.post("/machines/{machine_id}/actions", response_model=ActionState, operation_id="applyAction")
+def apply_action(machine_id: str, body: ActionIn, ws: Dependencies.Client, headers: Dependencies.Headers):
+    if not actions.enabled():
+        raise HTTPException(503, "Actions need the Lakebase database, which is only bound in the deployed app.")
+    if body.action == "note" and not (body.note or "").strip():
+        raise HTTPException(422, "A note can't be empty.")
+    actor = headers.user_email or headers.user_name
+    return ActionState(**actions.apply(ws, machine_id, body.action, actor, body.note))
