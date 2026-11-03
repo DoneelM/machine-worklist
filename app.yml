@@ -1,0 +1,1 @@
+command: ["uvicorn", "machine_worklist.backend.app:app", "--workers", "2"]

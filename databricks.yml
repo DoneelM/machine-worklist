@@ -1,0 +1,22 @@
+bundle:
+  name: machine-worklist
+
+sync:
+  include:
+    - .build
+
+artifacts:
+  default:
+    build: apx build
+
+resources:
+  apps:
+    machine-worklist-app:
+      name: "machine-worklist"
+      description: "machine-worklist created with apx"
+      source_code_path: ./.build
+
+targets:
+  dev:
+    mode: development
+    default: true
