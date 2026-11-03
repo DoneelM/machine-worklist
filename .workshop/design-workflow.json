@@ -241,6 +241,1193 @@
           "unlabelled_controls": 0,
           "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
           "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:01Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222357Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:\"Ask the data\"",
+            "result": "not_found",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:03Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222357Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:\"Which plant had the most critical defects in July 2026?\"",
+            "result": "not_found",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:04Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222357Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:22Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222419Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110953,
+          "captured_at": "2026-11-03T22:24:24Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222419Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "b19aec93410a8432bdbce8a0a5efd7453728bf17ed0386e875d8c953fdbd67af",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": true
+          },
+          "bytes": 8062,
+          "captured_at": "2026-11-03T22:24:25Z",
+          "controls": 1,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222419Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "0ed554e1837578ffb035b8c1ae2b1dedf603259c6f374663cba8093fa4f23323",
+          "text_chars": 32,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:36Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222433Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110953,
+          "captured_at": "2026-11-03T22:24:38Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222433Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "b19aec93410a8432bdbce8a0a5efd7453728bf17ed0386e875d8c953fdbd67af",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": true
+          },
+          "bytes": 8062,
+          "captured_at": "2026-11-03T22:24:39Z",
+          "controls": 1,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222433Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "0ed554e1837578ffb035b8c1ae2b1dedf603259c6f374663cba8093fa4f23323",
+          "text_chars": 32,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127901,
+          "captured_at": "2026-11-03T22:24:51Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222447Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "3c78e67f9e0f0dafa472a4657bb29b19a89b8eca4545d5b414e4eb62fe85b7d8",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110953,
+          "captured_at": "2026-11-03T22:24:52Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222447Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "b19aec93410a8432bdbce8a0a5efd7453728bf17ed0386e875d8c953fdbd67af",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": true
+          },
+          "bytes": 8062,
+          "captured_at": "2026-11-03T22:24:54Z",
+          "controls": 1,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222447Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "0ed554e1837578ffb035b8c1ae2b1dedf603259c6f374663cba8093fa4f23323",
+          "text_chars": 32,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:26:12Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222607Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "cbca6adce2167a73"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:26:18Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222615Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "cbca6adce2167a73"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110409,
+          "captured_at": "2026-11-03T22:26:20Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222615Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "cbca6adce2167a73"
+          },
+          "scope": "deployed",
+          "sha256": "39939d1d82ae88ddd0fb10daba6f91fa201dcdabb693dc99afebeed02c93fd48",
+          "text_chars": 35597,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 98200,
+          "captured_at": "2026-11-03T22:26:21Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222615Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "cbca6adce2167a73"
+          },
+          "scope": "deployed",
+          "sha256": "eb7a2efd71338cb4355239776547ed8bc5112ed20f0fc28368730135813d8b30",
+          "text_chars": 35340,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:28:36Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222831Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:28:44Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T222840Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110358,
+          "captured_at": "2026-11-03T22:28:46Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T222840Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "854032f6e7f96ee9a1f53583176473f8eceb0f0e2c75a6a95a55a04d0becec04",
+          "text_chars": 35584,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99106,
+          "captured_at": "2026-11-03T22:28:47Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T222840Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "4edaed79b63748fc6cf929395c704d3958d13336a73c263966e7f67437d2f302",
+          "text_chars": 35351,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:30:58Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T223055Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110358,
+          "captured_at": "2026-11-03T22:31:00Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T223055Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "854032f6e7f96ee9a1f53583176473f8eceb0f0e2c75a6a95a55a04d0becec04",
+          "text_chars": 35584,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99106,
+          "captured_at": "2026-11-03T22:31:01Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T223055Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "4edaed79b63748fc6cf929395c704d3958d13336a73c263966e7f67437d2f302",
+          "text_chars": 35351,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:32:47Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T223243Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110358,
+          "captured_at": "2026-11-03T22:32:48Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T223243Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "854032f6e7f96ee9a1f53583176473f8eceb0f0e2c75a6a95a55a04d0becec04",
+          "text_chars": 35584,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99106,
+          "captured_at": "2026-11-03T22:32:50Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T223243Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "4edaed79b63748fc6cf929395c704d3958d13336a73c263966e7f67437d2f302",
+          "text_chars": 35351,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:37:07Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T223703Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110358,
+          "captured_at": "2026-11-03T22:37:09Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T223703Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "854032f6e7f96ee9a1f53583176473f8eceb0f0e2c75a6a95a55a04d0becec04",
+          "text_chars": 35584,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99089,
+          "captured_at": "2026-11-03T22:37:10Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T223703Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "f03460c62dc95add39de692250da728b788080006d35e3bfc19c1954eb9ab19d",
+          "text_chars": 35351,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 6157,
+          "captured_at": "2026-11-03T22:38:00Z",
+          "controls": 0,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T223757Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "35a6cbaede9b092da435907d442ff2f0cff7cea9b51049ba740ead9ecfcbe91d",
+          "text_chars": 21,
+          "title": "",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com/api/current-user",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:40:06Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T224002Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110358,
+          "captured_at": "2026-11-03T22:40:07Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T224002Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "854032f6e7f96ee9a1f53583176473f8eceb0f0e2c75a6a95a55a04d0becec04",
+          "text_chars": 35584,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99106,
+          "captured_at": "2026-11-03T22:40:09Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T224002Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "c6392168ff3e4014"
+          },
+          "scope": "deployed",
+          "sha256": "4edaed79b63748fc6cf929395c704d3958d13336a73c263966e7f67437d2f302",
+          "text_chars": 35351,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:42:05Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T224201Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:42:11Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T224208Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110738,
+          "captured_at": "2026-11-03T22:42:13Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T224208Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "ad0607a6cdef1d435231aa9e42c54c605cc3b6a91f026b052f5d9f71cc3867e7",
+          "text_chars": 35612,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99083,
+          "captured_at": "2026-11-03T22:42:14Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T224208Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "900af6b4f0a397668f869426743e844f27f4d9c8df5ab946223742c430e017b6",
+          "text_chars": 35367,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:46:21Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T224616Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110738,
+          "captured_at": "2026-11-03T22:46:22Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T224616Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "ad0607a6cdef1d435231aa9e42c54c605cc3b6a91f026b052f5d9f71cc3867e7",
+          "text_chars": 35612,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99740,
+          "captured_at": "2026-11-03T22:46:24Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T224616Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "f5f58b7a366cd9a3b03f4c063056d9a7345386777aed89db2e3bb0607ad9f110",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:50:22Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T225018Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110738,
+          "captured_at": "2026-11-03T22:50:23Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T225018Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "ad0607a6cdef1d435231aa9e42c54c605cc3b6a91f026b052f5d9f71cc3867e7",
+          "text_chars": 35612,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99740,
+          "captured_at": "2026-11-03T22:50:25Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T225018Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "f5f58b7a366cd9a3b03f4c063056d9a7345386777aed89db2e3bb0607ad9f110",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 127309,
+          "captured_at": "2026-11-03T22:51:27Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "13915daf029d06fb4eb7daa60d73b24d1c3159db3d2e7e3c4099731614a95a2c",
+          "text_chars": 35163,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 4,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Ask the data",
+            "element": "button",
+            "label": "ask the data",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 110738,
+          "captured_at": "2026-11-03T22:51:29Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "after-1",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-after-1.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "ad0607a6cdef1d435231aa9e42c54c605cc3b6a91f026b052f5d9f71cc3867e7",
+          "text_chars": 35612,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Which plant had the most critical defects in July 2026?",
+            "element": "button",
+            "label": "which plant had the most critical defects in july 2026?",
+            "result": "ok",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99740,
+          "captured_at": "2026-11-03T22:51:30Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-2",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-after-2.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "f5f58b7a366cd9a3b03f4c063056d9a7345386777aed89db2e3bb0607ad9f110",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Show the SQL Genie ran",
+            "result": "not_found",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99617,
+          "captured_at": "2026-11-03T22:51:32Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-3",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-after-3.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "7d53f975fe96979fa7b7ff9189d3f0133f3f9181134aabe3239f38a660a95e58",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Show the SQL Genie ran",
+            "result": "not_found",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99617,
+          "captured_at": "2026-11-03T22:51:33Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-4",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-after-4.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "7d53f975fe96979fa7b7ff9189d3f0133f3f9181134aabe3239f38a660a95e58",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": {
+            "action": "click:Show the SQL Genie ran",
+            "result": "not_found",
+            "viewport": "desktop",
+            "visible_change": false
+          },
+          "bytes": 99751,
+          "captured_at": "2026-11-03T22:51:35Z",
+          "controls": 13,
+          "kind": "screenshot",
+          "label": "after-5",
+          "path": ".workshop/evidence/20261103T225123Z-deployed-desktop-after-5.png",
+          "revision": {
+            "commit": "bace79299e3b17abd98d94fe24fa9e9770d0a55c",
+            "dirty": "d707e81cf6879749"
+          },
+          "scope": "deployed",
+          "sha256": "98efb3900c5b97f53f933ec5313733111629bc78609852bc35b4e6c62ddb6012",
+          "text_chars": 35379,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
         }
       ]
     }
@@ -360,6 +1547,132 @@
       "kinds": [
         "screenshot"
       ]
+    },
+    {
+      "at": "2026-11-03T22:24:04Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:24:25Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:24:39Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:24:54Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:26:12Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:26:21Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:28:36Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:28:47Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:31:18Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:32:50Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:37:10Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:38:00Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:40:09Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:42:05Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:42:14Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:46:24Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:50:25Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:51:35Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
     }
   ],
   "outcome": null,
@@ -373,7 +1686,7 @@
   "project": "machine-worklist",
   "questions": [],
   "requests": [],
-  "revision": 33,
+  "revision": 57,
   "schema": "workshop-design-workflow",
   "success_criteria": [],
   "version": 1,

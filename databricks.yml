@@ -15,15 +15,16 @@ resources:
       name: "machine-worklist"
       description: "Ranked machine attention worklist with claim / note / resolve"
       source_code_path: ./.build
-      # On-behalf-of-user scopes: Genie runs as the person asking, so it only sees what they can read.
-      user_api_scopes:
-        - sql
-        - dashboards.genie
       resources:
         - name: sql-warehouse
           sql_warehouse:
             id: 41894588071c4fa4
             permission: CAN_USE
+        - name: genie-space
+          genie_space:
+            name: "Machine worklist: Ask the data"
+            space_id: 01f1d7d353001c8dad4d30a717580e83
+            permission: CAN_RUN
         - name: postgres
           postgres:
             branch: projects/machine-worklist/branches/production

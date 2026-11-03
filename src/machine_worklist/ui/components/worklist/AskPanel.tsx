@@ -16,8 +16,11 @@ const STARTERS = [
 
 function errorText(e: unknown) {
   if (e instanceof ApiError) {
-    const body = e.body as { detail?: string } | string;
-    return typeof body === "object" && body?.detail ? body.detail : `${e.status} ${e.statusText}`;
+    const body = e.body as { detail?: unknown } | string;
+    const detail = typeof body === "object" ? body?.detail : undefined;
+    if (typeof detail === "string") return detail;
+    if (Array.isArray(detail)) return detail.map((d: { msg?: string }) => d.msg ?? JSON.stringify(d)).join("; ");
+    return `Request failed (${e.status}${e.statusText ? ` ${e.statusText}` : ""}). Try again in a moment.`;
   }
   return e instanceof Error ? e.message : "Unknown error";
 }
@@ -38,7 +41,10 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  useEffect(() => endRef.current?.scrollIntoView({ block: "end" }), [turns]);
+  // Braces matter: newer browsers return a Promise from scrollIntoView, and React would call it as a cleanup.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [turns]);
 
   const ask = (question: string) => {
     const q = question.trim();
@@ -46,7 +52,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
     setDraft("");
     setTurns((t) => [...t, { question: q }]);
     m.mutate(
-      { params: {}, data: { question: q, conversation_id: conversationId } },  // the Apps proxy adds the user headers
+      { question: q, conversation_id: conversationId },
       {
         onSuccess: (res) => {
           setConversationId(res.data.conversation_id);
@@ -71,16 +77,15 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
   return (
     <aside
       aria-label="Ask the data"
-      aria-hidden={!open}
       className={cn(
-        "fixed inset-y-0 right-0 z-40 flex w-full max-w-[460px] flex-col border-l border-border bg-card shadow-xl transition-transform duration-200",
-        open ? "translate-x-0" : "pointer-events-none translate-x-full",
+        "fixed inset-y-0 right-0 z-40 flex w-full max-w-[460px] flex-col border-l border-border bg-card shadow-xl transition-[transform,visibility] duration-200",
+        open ? "visible translate-x-0" : "invisible translate-x-full shadow-none",
       )}
     >
       <header className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
         <div>
           <h2 className="font-semibold">Ask the data</h2>
-          <p className="text-xs text-muted-foreground">Genie over sensors, work orders, defects, the score and model risk. Runs as you.</p>
+          <p className="text-xs text-muted-foreground">Genie over sensors, work orders, defects, the score and model risk. Uses the app's data access.</p>
         </div>
         <div className="flex gap-1">
           {turns.length > 0 && (
@@ -207,7 +212,9 @@ function Answer({ a }: { a: AskOut }) {
       )}
       {a.sql && (
         <details className="text-xs">
-          <summary className="cursor-pointer text-muted-foreground hover:text-foreground">Show the SQL Genie ran</summary>
+          <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+            Show the SQL Genie ran
+          </summary>
           <pre className="mt-1 max-h-64 overflow-auto rounded-md bg-muted p-2 font-mono whitespace-pre-wrap">{a.sql}</pre>
         </details>
       )}

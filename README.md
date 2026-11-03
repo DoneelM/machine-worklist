@@ -19,7 +19,7 @@ _Live URL:_ https://machine-worklist-7474644914236022.aws.databricksapps.com
 | **Detail panel** | Click a machine to see its readings, daily vibration/temperature/output charts, and what is pushing the model's risk up. |
 | **Action buttons** | *Take this one*, *Found an issue*, *False alarm*, plus a note for the next shift. These are saved, and everyone sees who's on what. |
 | **Rule vs model strip** | How well the score and the model would have done on past weeks. |
-| **Ask the data** | A chat panel (Genie). Ask e.g. *"Which plant had the most critical defects in July?"* You get the answer, a table and the SQL it ran. |
+| **Ask the data** | A chat panel (Genie). Ask e.g. *"Which plant had the most critical defects in July?"* You get the answer, a table and the SQL it ran. Answers take 10–20 seconds. |
 
 ---
 
@@ -116,7 +116,7 @@ It's **a tie**, so the rule stays in charge of the ranking. Interestingly, the t
 - **Terminal** (needs the `psql` client installed): `databricks-me psql --project machine-worklist -- -c "select * from worklist.action_log order by created_at desc"`
 - **Workspace:** open **Lakebase** (the Postgres projects page) → project `machine-worklist` → branch `production` → **SQL editor**.
 
-**Who sees what.** The worklist reads data as the app. The chat runs **as the signed-in user**, so Genie only shows data that person is allowed to read.
+**Who sees what.** The worklist and the chat both read data with the app's own identity. Asking Genie as each signed-in user would need the `genie` user-authorization scope, which this workspace doesn't give apps (user tokens get `403 Invalid scope, required scopes: genie`). The data is all synthetic and is the same data the worklist shows, so in practice nobody sees anything extra.
 
 ---
 

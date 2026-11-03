@@ -1,4 +1,6 @@
 import json
+
+from databricks.sdk.errors import DatabricksError
 from typing import Literal
 
 from databricks.sdk.service.iam import User as UserOut
@@ -6,6 +8,7 @@ from fastapi import HTTPException
 
 from . import actions, genie
 from .core import Dependencies, create_router
+from .core._config import logger
 from .models import (
     ActionIn,
     ActionState,
@@ -153,13 +156,19 @@ def apply_action(
 
 
 @router.post("/ask", response_model=AskOut, operation_id="askData")
-def ask_data(body: AskIn, user_ws: Dependencies.UserClient, config: Dependencies.Config):
+def ask_data(body: AskIn, ws: Dependencies.Client, config: Dependencies.Config):
     if not config.genie_space_id:
         raise HTTPException(503, "The Genie space isn't configured (MACHINE_WORKLIST_GENIE_SPACE_ID).")
     question = body.question.strip()
     if not question:
         raise HTTPException(422, "Ask a question first.")
+    # Genie runs as the app's identity (CAN_RUN on the space via the genie-space app resource).
+    # Asking as the signed-in user needs the 'genie' user-authorization scope, which this workspace
+    # doesn't grant to apps: user tokens get "403 Invalid scope, required scopes: genie".
     try:
-        return genie.ask(user_ws, config.genie_space_id, question[:1000], body.conversation_id)
+        return genie.ask(ws, config.genie_space_id, question[:1000], body.conversation_id)
     except TimeoutError:
         raise HTTPException(504, "Genie took more than 2 minutes. Try a narrower question.")
+    except DatabricksError as e:
+        logger.error("Genie failed: %s", str(e)[:2000])
+        raise HTTPException(502, f"Genie couldn't answer: {str(e).splitlines()[0][:200]}")

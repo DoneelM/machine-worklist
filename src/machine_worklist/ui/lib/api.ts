@@ -160,15 +160,7 @@ export interface WorklistOut {
     items: WorklistItem[];
     risk_scored_for?: string | null;
 }
-export interface AskDataParams {
-    "X-Forwarded-Host"?: string | null;
-    "X-Forwarded-Preferred-Username"?: string | null;
-    "X-Forwarded-User"?: string | null;
-    "X-Forwarded-Email"?: string | null;
-    "X-Request-Id"?: string | null;
-    "X-Forwarded-Access-Token"?: string | null;
-}
-export const askData = async (data: AskIn, params?: AskDataParams, options?: RequestInit): Promise<{
+export const askData = async (data: AskIn, options?: RequestInit): Promise<{
     data: AskOut;
 }> =>{
     const res = await fetch("/api/ask", {
@@ -176,24 +168,6 @@ export const askData = async (data: AskIn, params?: AskDataParams, options?: Req
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            ...(params?.["X-Forwarded-Host"] != null && {
-                "X-Forwarded-Host": params["X-Forwarded-Host"]
-            }),
-            ...(params?.["X-Forwarded-Preferred-Username"] != null && {
-                "X-Forwarded-Preferred-Username": params["X-Forwarded-Preferred-Username"]
-            }),
-            ...(params?.["X-Forwarded-User"] != null && {
-                "X-Forwarded-User": params["X-Forwarded-User"]
-            }),
-            ...(params?.["X-Forwarded-Email"] != null && {
-                "X-Forwarded-Email": params["X-Forwarded-Email"]
-            }),
-            ...(params?.["X-Request-Id"] != null && {
-                "X-Request-Id": params["X-Request-Id"]
-            }),
-            ...(params?.["X-Forwarded-Access-Token"] != null && {
-                "X-Forwarded-Access-Token": params["X-Forwarded-Access-Token"]
-            }),
             ...options?.headers
         },
         body: JSON.stringify(data)
@@ -215,13 +189,10 @@ export const askData = async (data: AskIn, params?: AskDataParams, options?: Req
 export function useAskData(options?: {
     mutation?: UseMutationOptions<{
         data: AskOut;
-    }, ApiError, {
-        params: AskDataParams;
-        data: AskIn;
-    }>;
+    }, ApiError, AskIn>;
 }) {
     return useMutation({
-        mutationFn: (vars)=>askData(vars.data, vars.params),
+        mutationFn: (data)=>askData(data),
         ...options?.mutation
     });
 }
