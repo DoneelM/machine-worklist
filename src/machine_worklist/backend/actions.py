@@ -69,8 +69,27 @@ def _connect(ws: WorkspaceClient) -> psycopg.Connection[dict[str, Any]]:
             if not _ready:
                 conn.execute(DDL)
                 conn.commit()
+                _grant_readers(conn)
                 _ready = True
     return conn
+
+
+def _grant_readers(conn: psycopg.Connection[dict[str, Any]]) -> None:
+    """Read-only access for people who want to query the tables themselves.
+
+    Only the schema owner (this app's service principal) can grant, so it happens here.
+    WORKLIST_READ_ROLES is a comma-separated list of Lakebase Postgres roles (usually emails).
+    """
+    for role in filter(None, (r.strip() for r in os.environ.get("WORKLIST_READ_ROLES", "").split(","))):
+        q = '"' + role.replace('"', '""') + '"'
+        try:
+            conn.execute(f"GRANT USAGE ON SCHEMA worklist TO {q}")
+            conn.execute(f"GRANT SELECT ON ALL TABLES IN SCHEMA worklist TO {q}")
+            conn.execute(f"ALTER DEFAULT PRIVILEGES IN SCHEMA worklist GRANT SELECT ON TABLES TO {q}")
+            conn.commit()
+        except psycopg.Error as e:  # e.g. the role doesn't exist on this branch; never block the app
+            conn.rollback()
+            print(f"worklist: couldn't grant read to {role}: {e}")
 
 
 def statuses(ws: WorkspaceClient) -> dict[str, dict[str, Any]]:

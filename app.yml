@@ -6,3 +6,5 @@ env:
     valueFrom: postgres
   - name: MACHINE_WORKLIST_GENIE_SPACE_ID
     value: "01f1d7d353001c8dad4d30a717580e83"
+  - name: WORKLIST_READ_ROLES
+    value: "labuser+42@awsbricks.com"
