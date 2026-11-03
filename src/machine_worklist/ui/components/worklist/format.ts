@@ -7,6 +7,8 @@ export function reason(item: WorklistItem): string {
   switch (item.top_driver) {
     case "vibration":
       return `Vibration ${item.vib_trend >= 0 ? "up" : "down"} ${pct(Math.abs(item.vib_trend), 1)} on the prior week`;
+    case "temperature":
+      return `Temperature ${item.temp_change >= 0 ? "up" : "down"} ${Math.abs(item.temp_change).toFixed(1)}°C on the prior week`;
     case "defects":
       return `${item.defects_per_1k.toFixed(2)} serious defects per 1k units`;
     default:

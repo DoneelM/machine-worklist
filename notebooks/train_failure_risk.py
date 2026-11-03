@@ -7,7 +7,7 @@
 # MAGIC
 # MAGIC 1. Time split: train on older days, test on the last ~3 weeks, with a 7-day gap so training labels never see test days.
 # MAGIC 1b. Every numeric feature is a **percentile within its machine type on that day**, so wear-driven drift doesn't break the model.
-# MAGIC 2. Gradient boosting (scikit-learn HistGradientBoosting), compared with the current 40/35/25 rule score on **precision@20**: of the 20 machines a crew would inspect each day, how many had a bad week.
+# MAGIC 2. Gradient boosting (scikit-learn HistGradientBoosting), compared with the current 30/15/30/25 rule score on **precision@20**: of the 20 machines a crew would inspect each day, how many had a bad week.
 # MAGIC 3. Register in Unity Catalog, score the latest day into `machine_risk_7d` with the top 3 drivers per machine.
 # MAGIC    Drivers are **what-if** contributions, not SHAP: risk now minus risk with that one reading set to a typical
 # MAGIC    training value. Serverless here has no PyPI access, so LightGBM/SHAP aren't available.
@@ -30,7 +30,7 @@ CREW_CAPACITY = 20  # machines inspected per day
 LABEL = "label_top10_fleet"  # worst 10% of the fleet next week; relative, so it holds as machines wear
 
 FEATURES = [
-    "age_days", "vib_7d", "vib_14d", "vib_vs_30d", "vib_trend", "temp_7d", "temp_trend",
+    "age_days", "vib_7d", "vib_14d", "vib_vs_30d", "vib_trend", "temp_7d", "temp_trend", "temp_change_abs",
     "rpm_7d", "power_7d", "serious_7d", "serious_14d", "critical_7d", "minor_7d",
     "serious_per_1k_7d", "yield_shortfall_7d", "night_share_7d", "machine_type", "plant",
 ]
@@ -38,7 +38,7 @@ CATEGORICAL = ["machine_type", "plant"]
 LABELS = {  # plain-English names for the app
     "age_days": "Machine age", "vib_7d": "Vibration (7d avg)", "vib_14d": "Vibration (14d avg)",
     "vib_vs_30d": "Vibration vs 30-day baseline", "vib_trend": "Vibration trend (week on week)",
-    "temp_7d": "Temperature (7d avg)", "temp_trend": "Temperature trend", "rpm_7d": "Spindle RPM",
+    "temp_7d": "Temperature (7d avg)", "temp_trend": "Temperature trend", "temp_change_abs": "Temperature change (either way)", "rpm_7d": "Spindle RPM",
     "power_7d": "Power draw", "serious_7d": "Serious defects (7d)", "serious_14d": "Serious defects (14d)",
     "critical_7d": "Critical defects (7d)", "minor_7d": "Minor defects (7d)",
     "serious_per_1k_7d": "Serious defects per 1k units", "yield_shortfall_7d": "Yield shortfall (7d)",
@@ -70,10 +70,11 @@ test = labelled[labelled["day"] >= test_start]
 # COMMAND ----------
 
 def rule_score(frame: pd.DataFrame) -> pd.Series:
-    """The worklist's 40/35/25 attention score, recomputed per day (7-day windows)."""
+    """The worklist's 30/15/30/25 attention score, recomputed per day (7-day windows)."""
     g = frame.groupby(["day", "machine_type"], observed=True)
     p = lambda col: g[col].rank(pct=True)
-    return 0.40 * p("vib_trend") + 0.35 * p("serious_per_1k_7d") + 0.25 * p("yield_shortfall_7d")
+    return (0.30 * p("vib_trend") + 0.15 * p("temp_change_abs")
+            + 0.30 * p("serious_per_1k_7d") + 0.25 * p("yield_shortfall_7d"))
 
 
 def precision_at_k(frame: pd.DataFrame, score: str, k: int = CREW_CAPACITY) -> float:

@@ -59,6 +59,7 @@ SELECT r.machine_id, r.day, m.plant, m.machine_type,
        r.vib_7d, r.vib_14d, r.vib_7d / nullif(r.vib_30d, 0) - 1            AS vib_vs_30d,
        r.vib_7d / nullif(r.vib_prev_7d, 0) - 1                            AS vib_trend,
        r.temp_7d, r.temp_7d - r.temp_prev_7d                              AS temp_trend,
+       abs(r.temp_7d - r.temp_prev_7d)                                    AS temp_change_abs,  -- up or down
        r.rpm_7d, r.power_7d,
        r.serious_7d, r.serious_14d, r.critical_7d, r.minor_7d,
        1000.0 * r.serious_7d / nullif(r.produced_7d, 0)                   AS serious_per_1k_7d,

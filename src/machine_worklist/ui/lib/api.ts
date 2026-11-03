@@ -22,6 +22,26 @@ export interface ActionState {
     status?: "open" | "claimed" | "resolved";
     updated_at?: string | null;
 }
+export interface AskIn {
+    conversation_id?: string | null;
+    question: string;
+}
+export interface AskOut {
+    conversation_id: string;
+    error?: string | null;
+    message_id: string;
+    sql?: string | null;
+    sql_title?: string | null;
+    status: string;
+    suggestions?: string[];
+    table?: AskTable | null;
+    text?: string | null;
+}
+export interface AskTable {
+    columns: string[];
+    rows: (string | null)[][];
+    total_rows: number;
+}
 export interface ComplexValue {
     display?: string | null;
     primary?: boolean | null;
@@ -56,6 +76,7 @@ export interface MachineDetailOut {
     daily: DailyPoint[];
     history: LogEntry[];
     item: WorklistItem;
+    temp_baseline: number;
     temp_recent: number;
     units_planned: number;
     units_produced: number;
@@ -128,7 +149,8 @@ export interface WorklistItem {
     risk_lift?: number | null;
     risk_rank?: number | null;
     serious_defects: number;
-    top_driver: "vibration" | "defects" | "yield";
+    temp_change: number;
+    top_driver: "vibration" | "temperature" | "defects" | "yield";
     vib_trend: number;
     yield_shortfall: number;
 }
@@ -137,6 +159,71 @@ export interface WorklistOut {
     as_of: string;
     items: WorklistItem[];
     risk_scored_for?: string | null;
+}
+export interface AskDataParams {
+    "X-Forwarded-Host"?: string | null;
+    "X-Forwarded-Preferred-Username"?: string | null;
+    "X-Forwarded-User"?: string | null;
+    "X-Forwarded-Email"?: string | null;
+    "X-Request-Id"?: string | null;
+    "X-Forwarded-Access-Token"?: string | null;
+}
+export const askData = async (data: AskIn, params?: AskDataParams, options?: RequestInit): Promise<{
+    data: AskOut;
+}> =>{
+    const res = await fetch("/api/ask", {
+        ...options,
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            ...(params?.["X-Forwarded-Host"] != null && {
+                "X-Forwarded-Host": params["X-Forwarded-Host"]
+            }),
+            ...(params?.["X-Forwarded-Preferred-Username"] != null && {
+                "X-Forwarded-Preferred-Username": params["X-Forwarded-Preferred-Username"]
+            }),
+            ...(params?.["X-Forwarded-User"] != null && {
+                "X-Forwarded-User": params["X-Forwarded-User"]
+            }),
+            ...(params?.["X-Forwarded-Email"] != null && {
+                "X-Forwarded-Email": params["X-Forwarded-Email"]
+            }),
+            ...(params?.["X-Request-Id"] != null && {
+                "X-Request-Id": params["X-Request-Id"]
+            }),
+            ...(params?.["X-Forwarded-Access-Token"] != null && {
+                "X-Forwarded-Access-Token": params["X-Forwarded-Access-Token"]
+            }),
+            ...options?.headers
+        },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+        const body = await res.text();
+        let parsed: unknown;
+        try {
+            parsed = JSON.parse(body);
+        } catch  {
+            parsed = body;
+        }
+        throw new ApiError(res.status, res.statusText, parsed);
+    }
+    return {
+        data: await res.json()
+    };
+};
+export function useAskData(options?: {
+    mutation?: UseMutationOptions<{
+        data: AskOut;
+    }, ApiError, {
+        params: AskDataParams;
+        data: AskIn;
+    }>;
+}) {
+    return useMutation({
+        mutationFn: (vars)=>askData(vars.data, vars.params),
+        ...options?.mutation
+    });
 }
 export interface CurrentUserParams {
     "X-Forwarded-Host"?: string | null;

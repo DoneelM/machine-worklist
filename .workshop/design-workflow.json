@@ -1,7 +1,7 @@
 {
   "assumptions": [],
   "attendee": "labuser+42@awsbricks.com",
-  "brief_revision": 10,
+  "brief_revision": 13,
   "decisions": [
     {
       "at": "2026-11-03T20:39:29Z",
@@ -42,6 +42,16 @@
       "at": "2026-11-03T22:00:07Z",
       "by": "attendee",
       "text": "App: rank by rule; model shown as second opinion (lift vs fleet average, what-if drivers) + rule-vs-model evidence panel"
+    },
+    {
+      "at": "2026-11-03T22:06:52Z",
+      "by": "attendee",
+      "text": "Attention weights 30/15/30/25 (vibration/temperature/defects/yield); temperature = abs change of 7d avg vs prior 7d, percentile within type"
+    },
+    {
+      "at": "2026-11-03T22:06:52Z",
+      "by": "attendee",
+      "text": "Genie chat as slide-out 'Ask the data' panel; space over 4 workshop_demo.manufacturing tables + machine_attention + machine_risk_7d"
     }
   ],
   "direction": null,
@@ -71,6 +81,46 @@
           "unlabelled_controls": 0,
           "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
           "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 123536,
+          "captured_at": "2026-11-03T22:03:15Z",
+          "controls": 8,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T220309Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "246547b6fde5a554e9162774ef56f2e7e0797eae",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "cb5bdad5778cbb1e21a1ce4ef3a87dbf0f88f540a10ed7a6171ea5b2ec9f89c0",
+          "text_chars": 34136,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 123535,
+          "captured_at": "2026-11-03T22:03:20Z",
+          "controls": 8,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T220316Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "246547b6fde5a554e9162774ef56f2e7e0797eae",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "c8ad1295fe635df3d32ea210aceb38c52ab3e701eb5b297f412fa8ab1d287063",
+          "text_chars": 34136,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
         }
       ]
     }
@@ -85,6 +135,11 @@
       "at": "2026-11-03T21:01:58Z",
       "by": "attendee",
       "text": "Add a 7-day failure early-warning model (serious/critical defect in next 7 days) to the machine-worklist app"
+    },
+    {
+      "at": "2026-11-03T22:03:33Z",
+      "by": "attendee",
+      "text": "Early warning shipped: model v5 as second opinion; rule and model tie on precision@20 (30% vs 8.5% base), agree on 4/20"
     }
   ],
   "history": [
@@ -124,6 +179,20 @@
       },
       "from": "build",
       "to": "feedback"
+    },
+    {
+      "at": "2026-11-03T22:03:15Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:03:20Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
     }
   ],
   "outcome": null,
@@ -137,7 +206,7 @@
   "project": "machine-worklist",
   "questions": [],
   "requests": [],
-  "revision": 16,
+  "revision": 22,
   "schema": "workshop-design-workflow",
   "success_criteria": [],
   "version": 1,

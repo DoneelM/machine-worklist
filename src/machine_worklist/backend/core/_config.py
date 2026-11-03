@@ -30,6 +30,7 @@ class AppConfig(BaseSettings):
     app_name: str = Field(default=app_name)
     warehouse_id: str = Field(default="")
     data_schema: str = Field(default="nzlabs_031.default")
+    genie_space_id: str = Field(default="")
 
     @property
     def static_assets_path(self) -> Path:

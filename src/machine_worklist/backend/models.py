@@ -14,7 +14,7 @@ class VersionOut(BaseModel):
 
 
 Status = Literal["open", "claimed", "resolved"]
-Driver = Literal["vibration", "defects", "yield"]
+Driver = Literal["vibration", "temperature", "defects", "yield"]
 
 
 class ActionState(BaseModel):
@@ -40,6 +40,7 @@ class WorklistItem(BaseModel):
     attention_score: float
     top_driver: Driver
     vib_trend: float
+    temp_change: float  # 7d avg minus prior 7d, °C; either direction matters
     defects_per_1k: float
     yield_shortfall: float
     serious_defects: int
@@ -86,6 +87,7 @@ class MachineDetailOut(BaseModel):
     vib_recent: float
     vib_baseline: float
     temp_recent: float
+    temp_baseline: float
     units_planned: int
     units_produced: int
     daily: list[DailyPoint]
@@ -111,3 +113,26 @@ class ModelEvalOut(BaseModel):
     rule_auc: float
     model_precision_at_20: float
     rule_precision_at_20: float
+
+
+class AskIn(BaseModel):
+    question: str
+    conversation_id: str | None = None
+
+
+class AskTable(BaseModel):
+    columns: list[str]
+    rows: list[list[str | None]]
+    total_rows: int
+
+
+class AskOut(BaseModel):
+    conversation_id: str
+    message_id: str
+    status: str
+    text: str | None = None
+    sql: str | None = None
+    sql_title: str | None = None
+    table: AskTable | None = None
+    suggestions: list[str] = []
+    error: str | None = None

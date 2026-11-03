@@ -20,6 +20,7 @@ import {
 import selector from "@/lib/selector";
 import { Button } from "@/components/ui/button";
 import { TrendChart } from "@/components/worklist/TrendChart";
+import { AskButton, AskPanel } from "@/components/worklist/AskPanel";
 import { driverEffect, driverText, lift, pct, reason, shortName, statusLabel } from "@/components/worklist/format";
 import { cn } from "@/lib/utils";
 
@@ -42,6 +43,7 @@ function Worklist() {
   const [machineType, setMachineType] = useState("");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [selected, setSelected] = useState<string | null>(null);
+  const [askOpen, setAskOpen] = useState(false);
 
   const filters = useGetFilters(selector());
   const list = useGetWorklist({ params: { plant, machine_type: machineType }, ...selector<WorklistOut>() });
@@ -68,12 +70,15 @@ function Worklist() {
           <div>
             <h1 className="text-xl font-semibold tracking-tight">Machine attention</h1>
             <p className="text-sm text-muted-foreground">
-              Which machine to look at next, ranked on vibration trend, serious defects and lost output.
+              Which machine to look at next, ranked on vibration and temperature change, serious defects and lost output.
             </p>
           </div>
+          <div className="flex flex-col items-end gap-2">
+          <AskButton onClick={() => setAskOpen(true)} />
           <p className="text-xs text-muted-foreground">
-            Synthetic demo data · 14 days to {asOf ?? "…"} · score 40% vibration, 35% defects, 25% yield · model is a second opinion
+            Synthetic demo data · 14 days to {asOf ?? "…"} · score 30% vibration, 15% temperature, 30% defects, 25% yield · model is a second opinion
           </p>
+          </div>
         </div>
       </header>
 
@@ -124,6 +129,7 @@ function Worklist() {
           </aside>
         </div>
       </div>
+      <AskPanel open={askOpen} onClose={() => setAskOpen(false)} machineId={selected} />
     </div>
   );
 }
@@ -344,8 +350,9 @@ function Detail({ machineId, actionsEnabled }: { machineId: string; actionsEnabl
           <span className="font-medium">Most unusual: </span>
           {reason(it)}, compared with other {it.machine_type.toLowerCase()}s.
         </p>
-        <dl className="mt-4 grid grid-cols-3 gap-3 text-sm">
+        <dl className="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
           <Fact label="Vibration, 7d" value={`${d.vib_recent.toFixed(2)} mm/s`} sub={`was ${d.vib_baseline.toFixed(2)}`} />
+          <Fact label="Temperature, 7d" value={`${d.temp_recent.toFixed(1)}°C`} sub={`was ${d.temp_baseline.toFixed(1)}`} />
           <Fact label="Serious defects" value={`${it.serious_defects}`} sub={`${it.critical_defects} critical`} />
           <Fact label="Output vs plan" value={pct(d.units_produced / Math.max(1, d.units_planned))} sub={`${d.units_produced.toLocaleString()} units`} />
         </dl>
@@ -362,6 +369,14 @@ function Detail({ machineId, actionsEnabled }: { machineId: string; actionsEnabl
           points={d.daily.map((p) => ({ x: p.day, y: p.vibration_mm_s }))}
           reference={d.vib_baseline}
           referenceLabel="prior-week average"
+        />
+        <TrendChart
+          title="Daily temperature"
+          unit="°C"
+          points={d.daily.map((p) => ({ x: p.day, y: p.temperature_c }))}
+          reference={d.temp_baseline}
+          referenceLabel="prior-week average"
+          format={(v) => v.toFixed(1)}
         />
         <TrendChart title="Daily output vs plan" unit="% of planned" points={yieldPoints} format={(v) => pct(v)} />
       </div>

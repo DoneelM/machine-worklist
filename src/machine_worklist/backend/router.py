@@ -4,11 +4,13 @@ from typing import Literal
 from databricks.sdk.service.iam import User as UserOut
 from fastapi import HTTPException
 
-from . import actions
+from . import actions, genie
 from .core import Dependencies, create_router
 from .models import (
     ActionIn,
     ActionState,
+    AskIn,
+    AskOut,
     FiltersOut,
     MachineDetailOut,
     ModelEvalOut,
@@ -21,7 +23,7 @@ from .warehouse import query
 router = create_router()
 
 ITEM_COLS = (
-    "machine_id, plant, line, machine_type, attention_score, top_driver, vib_trend, "
+    "machine_id, plant, line, machine_type, attention_score, top_driver, vib_trend, temp_change, "
     "defects_per_1k, yield_shortfall, serious_defects, critical_defects, risk_7d, risk_lift, risk_rank, drivers"
 )
 # machine_risk_7d is written by notebooks/train_failure_risk.py; LEFT JOIN so the list still works before scoring.
@@ -101,7 +103,7 @@ def machine(machine_id: str, ws: Dependencies.Client, config: Dependencies.Confi
     rows = query(
         ws,
         config.warehouse_id,
-        f"SELECT {ITEM_COLS}, vib_recent, vib_baseline, temp_recent, units_planned, units_produced "
+        f"SELECT {ITEM_COLS}, vib_recent, vib_baseline, temp_recent, temp_baseline, units_planned, units_produced "
         f"FROM {SOURCE.format(s=config.data_schema)} WHERE machine_id = :id",
         {"id": machine_id},
     )
@@ -114,7 +116,7 @@ def machine(machine_id: str, ws: Dependencies.Client, config: Dependencies.Confi
         {"id": machine_id},
     )
     row = rows[0]
-    extra = {k: row.pop(k) for k in ("vib_recent", "vib_baseline", "temp_recent", "units_planned", "units_produced")}
+    extra = {k: row.pop(k) for k in ("vib_recent", "vib_baseline", "temp_recent", "temp_baseline", "units_planned", "units_produced")}
     states = actions.statuses(ws) if actions.enabled() else {}
     return MachineDetailOut(
         item=_item(row, states),
@@ -148,3 +150,16 @@ def apply_action(
         )
         risk = float(rows[0]["risk_7d"]) if rows and rows[0]["risk_7d"] is not None else None
     return ActionState(**actions.apply(ws, machine_id, body.action, actor, body.note, risk))
+
+
+@router.post("/ask", response_model=AskOut, operation_id="askData")
+def ask_data(body: AskIn, user_ws: Dependencies.UserClient, config: Dependencies.Config):
+    if not config.genie_space_id:
+        raise HTTPException(503, "The Genie space isn't configured (MACHINE_WORKLIST_GENIE_SPACE_ID).")
+    question = body.question.strip()
+    if not question:
+        raise HTTPException(422, "Ask a question first.")
+    try:
+        return genie.ask(user_ws, config.genie_space_id, question[:1000], body.conversation_id)
+    except TimeoutError:
+        raise HTTPException(504, "Genie took more than 2 minutes. Try a narrower question.")

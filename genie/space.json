@@ -1,0 +1,354 @@
+{
+ "version": 2,
+ "config": {
+  "sample_questions": [
+   {
+    "id": "10000000000000000000000000000001",
+    "question": [
+     "Which 10 machines have the highest attention score, and what's driving each?"
+    ]
+   },
+   {
+    "id": "10000000000000000000000000000002",
+    "question": [
+     "Which plant had the most critical defects in July 2026?"
+    ]
+   },
+   {
+    "id": "10000000000000000000000000000003",
+    "question": [
+     "How do serious defects per 1,000 units compare between day and night shifts?"
+    ]
+   },
+   {
+    "id": "10000000000000000000000000000004",
+    "question": [
+     "Average vibration and temperature by machine type over the last 30 days"
+    ]
+   },
+   {
+    "id": "10000000000000000000000000000005",
+    "question": [
+     "Which machines does the model rank in its top 20 but the attention score doesn't?"
+    ]
+   }
+  ]
+ },
+ "data_sources": {
+  "tables": [
+   {
+    "identifier": "nzlabs_031.default.machine_attention",
+    "column_configs": [
+     {
+      "column_name": "attention_score",
+      "description": [
+       "0-100 rule score over the last 14 days: 30% vibration trend, 15% temperature change (either direction), 30% serious defects per 1k units, 25% yield shortfall; each a percentile within machine type."
+      ],
+      "synonyms": [
+       "score",
+       "priority",
+       "attention"
+      ]
+     },
+     {
+      "column_name": "temp_change",
+      "description": [
+       "7-day average temperature minus the prior 7 days, in \u00b0C."
+      ]
+     },
+     {
+      "column_name": "top_driver",
+      "description": [
+       "The component most unusual for this machine: vibration, temperature, defects or yield."
+      ],
+      "synonyms": [
+       "reason",
+       "why"
+      ],
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     }
+    ]
+   },
+   {
+    "identifier": "nzlabs_031.default.machine_risk_7d",
+    "column_configs": [
+     {
+      "column_name": "drivers",
+      "exclude": true
+     },
+     {
+      "column_name": "risk_7d",
+      "description": [
+       "Model probability the machine is in the fleet's worst 10% for major/critical defects over the next 7 days."
+      ],
+      "synonyms": [
+       "risk",
+       "failure risk",
+       "predicted risk"
+      ]
+     },
+     {
+      "column_name": "risk_lift",
+      "description": [
+       "risk_7d as a multiple of today's fleet average."
+      ],
+      "synonyms": [
+       "lift"
+      ]
+     },
+     {
+      "column_name": "risk_rank",
+      "description": [
+       "1 = highest model risk in the fleet."
+      ],
+      "synonyms": [
+       "model rank"
+      ]
+     }
+    ]
+   },
+   {
+    "identifier": "workshop_demo.manufacturing.defects",
+    "column_configs": [
+     {
+      "column_name": "defect_type",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "plant",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "severity",
+      "description": [
+       "minor, major or critical. 'Serious' means major + critical."
+      ],
+      "synonyms": [
+       "serious",
+       "criticality"
+      ],
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "shift",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     }
+    ]
+   },
+   {
+    "identifier": "workshop_demo.manufacturing.machines",
+    "column_configs": [
+     {
+      "column_name": "line",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "machine_type",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "plant",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     }
+    ]
+   },
+   {
+    "identifier": "workshop_demo.manufacturing.sensor_readings",
+    "column_configs": [
+     {
+      "column_name": "machine_type",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "plant",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "temperature_c",
+      "synonyms": [
+       "temperature",
+       "temp",
+       "heat"
+      ]
+     },
+     {
+      "column_name": "vibration_mm_s",
+      "synonyms": [
+       "vibration",
+       "vib"
+      ]
+     }
+    ]
+   },
+   {
+    "identifier": "workshop_demo.manufacturing.work_orders",
+    "column_configs": [
+     {
+      "column_name": "plant",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "shift",
+      "enable_format_assistance": true,
+      "enable_entity_matching": true
+     },
+     {
+      "column_name": "units_produced",
+      "synonyms": [
+       "output",
+       "production"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "instructions": {
+  "text_instructions": [
+   {
+    "id": "30000000000000000000000000000001",
+    "content": [
+     "## PURPOSE\n- Answer maintenance and quality questions about 400 machines across 5 plants for plant and maintenance leads.\n\n## DISAMBIGUATION\n- 'Serious defects' means defects.severity in major or critical.\n- Relative dates ('last 30 days', 'this month') are relative to the latest sensor_readings.reading_at (data ends 1 Aug 2026), not today.\n\n## Instructions you must follow when providing summaries\n- Say once that this is synthetic demo data.\n- State the date range used."
+    ]
+   }
+  ],
+  "example_question_sqls": [
+   {
+    "id": "20000000000000000000000000000001",
+    "question": [
+     "Serious defects per 1,000 units by shift"
+    ],
+    "sql": [
+     "WITH d AS (SELECT defects.shift, count_if(defects.severity IN ('major', 'critical')) AS serious_defects FROM workshop_demo.manufacturing.defects GROUP BY defects.shift),\nw AS (SELECT work_orders.shift, sum(work_orders.units_produced) AS units_produced FROM workshop_demo.manufacturing.work_orders GROUP BY work_orders.shift)\nSELECT d.shift, d.serious_defects, w.units_produced, round(1000.0 * d.serious_defects / w.units_produced, 3) AS serious_per_1k_units FROM d JOIN w USING (shift) ORDER BY serious_per_1k_units DESC"
+    ],
+    "usage_guidance": [
+     "Rates: aggregate defects and work_orders separately, then join, so units aren't double counted."
+    ]
+   },
+   {
+    "id": "20000000000000000000000000000002",
+    "question": [
+     "Average vibration by machine type over the last 30 days"
+    ],
+    "sql": [
+     "WITH b AS (SELECT max(sensor_readings.reading_at) AS as_of FROM workshop_demo.manufacturing.sensor_readings)\nSELECT sensor_readings.machine_type, round(avg(sensor_readings.vibration_mm_s), 2) AS avg_vibration_mm_s, round(avg(sensor_readings.temperature_c), 1) AS avg_temperature_c\nFROM workshop_demo.manufacturing.sensor_readings CROSS JOIN b WHERE sensor_readings.reading_at > b.as_of - INTERVAL 30 DAYS GROUP BY sensor_readings.machine_type ORDER BY avg_vibration_mm_s DESC"
+    ],
+    "usage_guidance": [
+     "Relative time windows anchor on the latest reading, not current_date()."
+    ]
+   },
+   {
+    "id": "20000000000000000000000000000003",
+    "question": [
+     "Machines in the model's top 20"
+    ],
+    "sql": [
+     "SELECT machine_attention.machine_id, machine_attention.plant, machine_attention.machine_type, machine_attention.attention_score, machine_attention.top_driver, machine_risk_7d.risk_rank, machine_risk_7d.risk_lift\nFROM nzlabs_031.default.machine_attention JOIN nzlabs_031.default.machine_risk_7d ON machine_attention.machine_id = machine_risk_7d.machine_id\nWHERE machine_risk_7d.risk_rank <= 20 ORDER BY machine_risk_7d.risk_rank"
+    ]
+   }
+  ],
+  "join_specs": [
+   {
+    "id": "40000000000000000000000000000001",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.machines",
+     "alias": "machines"
+    },
+    "right": {
+     "identifier": "workshop_demo.manufacturing.defects",
+     "alias": "defects"
+    },
+    "sql": [
+     "`machines`.`machine_id` = `defects`.`machine_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_MANY--"
+    ]
+   },
+   {
+    "id": "40000000000000000000000000000002",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.machines",
+     "alias": "machines"
+    },
+    "right": {
+     "identifier": "workshop_demo.manufacturing.sensor_readings",
+     "alias": "sensor_readings"
+    },
+    "sql": [
+     "`machines`.`machine_id` = `sensor_readings`.`machine_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_MANY--"
+    ]
+   },
+   {
+    "id": "40000000000000000000000000000003",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.machines",
+     "alias": "machines"
+    },
+    "right": {
+     "identifier": "workshop_demo.manufacturing.work_orders",
+     "alias": "work_orders"
+    },
+    "sql": [
+     "`machines`.`machine_id` = `work_orders`.`machine_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_MANY--"
+    ]
+   },
+   {
+    "id": "40000000000000000000000000000004",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.machines",
+     "alias": "machines"
+    },
+    "right": {
+     "identifier": "nzlabs_031.default.machine_attention",
+     "alias": "machine_attention"
+    },
+    "sql": [
+     "`machines`.`machine_id` = `machine_attention`.`machine_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_ONE--"
+    ]
+   },
+   {
+    "id": "40000000000000000000000000000005",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.machines",
+     "alias": "machines"
+    },
+    "right": {
+     "identifier": "nzlabs_031.default.machine_risk_7d",
+     "alias": "machine_risk_7d"
+    },
+    "sql": [
+     "`machines`.`machine_id` = `machine_risk_7d`.`machine_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_ONE--"
+    ]
+   },
+   {
+    "id": "40000000000000000000000000000006",
+    "left": {
+     "identifier": "workshop_demo.manufacturing.defects",
+     "alias": "defects"
+    },
+    "right": {
+     "identifier": "workshop_demo.manufacturing.work_orders",
+     "alias": "work_orders"
+    },
+    "sql": [
+     "`defects`.`work_order_id` = `work_orders`.`work_order_id`",
+     "--rt=FROM_RELATIONSHIP_TYPE_MANY_TO_ONE--"
+    ]
+   }
+  ]
+ }
+}

@@ -15,6 +15,10 @@ resources:
       name: "machine-worklist"
       description: "Ranked machine attention worklist with claim / note / resolve"
       source_code_path: ./.build
+      # On-behalf-of-user scopes: Genie runs as the person asking, so it only sees what they can read.
+      user_api_scopes:
+        - sql
+        - dashboards.genie
       resources:
         - name: sql-warehouse
           sql_warehouse:

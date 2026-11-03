@@ -1,5 +1,7 @@
 -- Machine attention score (synthetic demo data: workshop_demo.manufacturing)
--- Window: last 14 days of available data. Weights: vibration 40%, defects 35%, yield 25%.
+-- Window: last 14 days of available data. Weights: vibration 30%, temperature 15%, defects 30%, yield 25%.
+-- Temperature = size of the change in 7-day average vs the prior 7 days, up OR down (both warrant a look).
+-- It's kept at 15% because temperature and vibration trends share the wear signal (corr 0.84 on this data).
 -- Each component is a percentile rank within machine_type, so a Press is compared with other Presses.
 CREATE OR REPLACE TABLE nzlabs_031.default.machine_attention AS
 WITH bounds AS (
@@ -9,7 +11,8 @@ vib AS (
   SELECT s.machine_id,
          avg(CASE WHEN s.reading_at >  b.as_of - INTERVAL 7 DAYS THEN vibration_mm_s END) AS vib_recent,
          avg(CASE WHEN s.reading_at <= b.as_of - INTERVAL 7 DAYS THEN vibration_mm_s END) AS vib_baseline,
-         avg(CASE WHEN s.reading_at >  b.as_of - INTERVAL 7 DAYS THEN temperature_c END)  AS temp_recent
+         avg(CASE WHEN s.reading_at >  b.as_of - INTERVAL 7 DAYS THEN temperature_c END)  AS temp_recent,
+         avg(CASE WHEN s.reading_at <= b.as_of - INTERVAL 7 DAYS THEN temperature_c END)  AS temp_baseline
   FROM workshop_demo.manufacturing.sensor_readings s CROSS JOIN bounds b
   WHERE s.reading_at > b.as_of - INTERVAL 14 DAYS
   GROUP BY s.machine_id
@@ -30,7 +33,8 @@ dfx AS (
 ),
 base AS (
   SELECT m.machine_id, m.plant, m.line, m.machine_type,
-         v.vib_recent, v.vib_baseline, v.temp_recent,
+         v.vib_recent, v.vib_baseline, v.temp_recent, v.temp_baseline,
+         coalesce(v.temp_recent - v.temp_baseline, 0)                                       AS temp_change,
          coalesce(v.vib_recent / nullif(v.vib_baseline, 0) - 1, 0)                         AS vib_trend,
          coalesce(f.serious_defects, 0)                                                     AS serious_defects,
          coalesce(f.critical_defects, 0)                                                    AS critical_defects,
@@ -45,15 +49,17 @@ base AS (
 ranked AS (
   SELECT *,
          percent_rank() OVER (PARTITION BY machine_type ORDER BY vib_trend)       AS p_vib,
+         percent_rank() OVER (PARTITION BY machine_type ORDER BY abs(temp_change)) AS p_temp,
          percent_rank() OVER (PARTITION BY machine_type ORDER BY defects_per_1k)  AS p_defects,
          percent_rank() OVER (PARTITION BY machine_type ORDER BY yield_shortfall) AS p_yield
   FROM base
 )
 SELECT *,
-       round(100 * (0.40 * p_vib + 0.35 * p_defects + 0.25 * p_yield), 1) AS attention_score,
+       round(100 * (0.30 * p_vib + 0.15 * p_temp + 0.30 * p_defects + 0.25 * p_yield), 1) AS attention_score,
        -- top_driver = the component that is most unusual for this machine (unweighted percentile)
-       CASE greatest(p_vib, p_defects, p_yield)
+       CASE greatest(p_vib, p_temp, p_defects, p_yield)
          WHEN p_vib     THEN 'vibration'
+         WHEN p_temp    THEN 'temperature'
          WHEN p_defects THEN 'defects'
          ELSE 'yield' END                                                AS top_driver,
        (SELECT as_of FROM bounds)                                        AS as_of
