@@ -85,7 +85,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
       <header className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
         <div>
           <h2 className="text-lg font-semibold">Ask the data</h2>
-          <p className="text-xs text-muted-foreground">Genie over sensors, work orders, defects, the score and model risk. Uses the app's data access.</p>
+          <p className="text-[0.8125rem] text-muted-foreground">Genie over sensors, work orders, defects, the score and model risk. Uses the app's data access.</p>
         </div>
         <div className="flex gap-1">
           {turns.length > 0 && (
@@ -99,7 +99,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
         </div>
       </header>
 
-      <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4 text-sm" aria-live="polite">
+      <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4 text-[0.9375rem]" aria-live="polite">
         {turns.length === 0 && (
           <div className="space-y-2">
             <p className="text-muted-foreground">Try one of these, or ask your own:</p>
@@ -131,7 +131,7 @@ export function AskPanel({ open, onClose, machineId }: { open: boolean; onClose:
         {lastSuggestions.length > 0 && !m.isPending && (
           <div className="flex flex-wrap gap-2">
             {lastSuggestions.map((s) => (
-              <button key={s} onClick={() => ask(s)} className="rounded-full border border-border px-3 py-1 text-xs hover:bg-muted/60">
+              <button key={s} onClick={() => ask(s)} className="rounded-full border border-border px-3 py-1 text-[0.8125rem] hover:bg-muted/60">
                 {s}
               </button>
             ))}
@@ -181,7 +181,7 @@ function Answer({ a }: { a: AskOut }) {
       {a.text && <p className="whitespace-pre-wrap">{a.text.replace(/\*\*/g, "")}</p>}
       {a.table && a.table.rows.length > 0 && (
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-[0.8125rem]">
             <thead className="bg-muted/60 text-left text-muted-foreground">
               <tr>
                 {a.table.columns.map((c) => (
@@ -204,14 +204,14 @@ function Answer({ a }: { a: AskOut }) {
             </tbody>
           </table>
           {a.table.total_rows > a.table.rows.length && (
-            <p className="border-t border-border px-2 py-1 text-xs text-muted-foreground">
+            <p className="border-t border-border px-2 py-1 text-[0.8125rem] text-muted-foreground">
               Showing {a.table.rows.length} of {a.table.total_rows.toLocaleString()} rows
             </p>
           )}
         </div>
       )}
       {a.sql && (
-        <details className="text-xs">
+        <details className="text-[0.8125rem]">
           <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
             Show the SQL Genie ran
           </summary>

@@ -29,8 +29,8 @@ export function TrendChart({
     return () => ro.disconnect();
   }, []);
 
-  const height = 132;
-  const pad = { top: 10, right: 8, bottom: 20, left: 40 };
+  const height = 140;
+  const pad = { top: 10, right: 8, bottom: 24, left: 48 };
   const w = width - pad.left - pad.right;
   const h = height - pad.top - pad.bottom;
 
@@ -70,7 +70,7 @@ export function TrendChart({
         <span className="font-medium">
           {title} <span className="font-normal text-muted-foreground">({unit})</span>
         </span>
-        <span className="font-mono text-xs text-muted-foreground" aria-live="polite">
+        <span className="text-[0.8125rem] text-muted-foreground tabular-nums" aria-live="polite">
           {hp ? `${shortDate(hp.x)} · ${format(hp.y)}` : `last: ${format(points[points.length - 1].y)}`}
         </span>
       </figcaption>
@@ -78,13 +78,13 @@ export function TrendChart({
         {ticks.map((t) => (
           <g key={t}>
             <line x1={pad.left} x2={width - pad.right} y1={sy(t)} y2={sy(t)} stroke="var(--border)" strokeWidth={1} />
-            <text x={pad.left - 6} y={sy(t)} dy="0.32em" textAnchor="end" className="fill-muted-foreground font-mono text-[10px]">
+            <text x={pad.left - 6} y={sy(t)} dy="0.32em" textAnchor="end" className="fill-muted-foreground text-[13px] tabular-nums">
               {format(t)}
             </text>
           </g>
         ))}
         {[0, points.length - 1].map((i) => (
-          <text key={i} x={sx(i)} y={height - 4} textAnchor={i ? "end" : "start"} className="fill-muted-foreground text-[10px]">
+          <text key={i} x={sx(i)} y={height - 4} textAnchor={i ? "end" : "start"} className="fill-muted-foreground text-[13px]">
             {shortDate(points[i].x)}
           </text>
         ))}
@@ -100,7 +100,7 @@ export function TrendChart({
               strokeDasharray="4 3"
             />
             {referenceLabel && (
-              <text x={width - pad.right} y={sy(reference) - 4} textAnchor="end" className="fill-muted-foreground text-[10px]">
+              <text x={width - pad.right} y={sy(reference) - 4} textAnchor="end" className="fill-muted-foreground text-[13px]">
                 {referenceLabel}
               </text>
             )}
