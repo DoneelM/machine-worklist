@@ -55,4 +55,5 @@ exclude = ["src/machine_worklist/ui"]
 
 [tool.ty.src]
 # Installed workshop skills are tools, not application source.
-exclude = [".agents/skills/**", ".claude/skills/**"]
+# notebooks/ run on Databricks serverless (spark, dbutils, sklearn), not in the app.
+exclude = [".agents/skills/**", ".claude/skills/**", "notebooks/**"]

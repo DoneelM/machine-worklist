@@ -1,7 +1,9 @@
 -- Training/scoring features for the 7-day early-warning model (synthetic demo data: workshop_demo.manufacturing).
 -- One row per machine per full day. Every feature uses only data up to and including that day.
--- Label: 11+ major/critical defects in the NEXT 7 days (worst ~10% of machine-weeks). NULL where the
--- next 7 days aren't fully observed yet: those are the rows we score.
+-- Labels (NULL where the next 7 days aren't fully observed yet: those are the rows we score):
+--   label_top10_fleet: in the fleet's worst 10% that day by major/critical defects over the NEXT 7 days.
+--     Relative, so it doesn't drift as the whole fleet wears. This is the one the model trains on.
+--   label_bad_week: 11+ major/critical defects in the next 7 days. Absolute; ~9% of days in May-June, ~41% in July.
 CREATE OR REPLACE TABLE nzlabs_031.default.machine_features_daily AS
 WITH b AS (SELECT date(max(reading_at)) AS last_full_day FROM workshop_demo.manufacturing.sensor_readings),
 s AS (
@@ -63,6 +65,8 @@ SELECT r.machine_id, r.day, m.plant, m.machine_type,
        greatest(1 - r.produced_7d / nullif(r.planned_7d, 0), 0)           AS yield_shortfall_7d,
        r.night_planned_7d / nullif(r.planned_7d, 0)                       AS night_share_7d,
        r.serious_next_7d,
-       CASE WHEN r.days_next_7d = 7 THEN CAST(r.serious_next_7d >= 11 AS INT) END AS label_bad_week
+       CASE WHEN r.days_next_7d = 7 THEN CAST(r.serious_next_7d >= 11 AS INT) END AS label_bad_week,
+       CASE WHEN r.days_next_7d = 7
+            THEN CAST(percent_rank() OVER (PARTITION BY r.day ORDER BY r.serious_next_7d) >= 0.9 AS INT) END AS label_top10_fleet
 FROM rolled r JOIN workshop_demo.manufacturing.machines m USING (machine_id)
 WHERE r.days_hist = 30;  -- need 30 days of history for the baselines

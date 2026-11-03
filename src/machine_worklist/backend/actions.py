@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS worklist.action_log (
   note        text,
   created_at  timestamptz NOT NULL DEFAULT now()
 );
+ALTER TABLE worklist.action_log ADD COLUMN IF NOT EXISTS risk_7d double precision;
 CREATE INDEX IF NOT EXISTS action_log_machine ON worklist.action_log (machine_id, created_at DESC);
 """
 
@@ -91,9 +92,16 @@ def history(ws: WorkspaceClient, machine_id: str) -> list[dict[str, Any]]:
         ).fetchall()
 
 
-def apply(ws: WorkspaceClient, machine_id: str, action: str, actor: str | None, note: str | None) -> dict[str, Any]:
-    """Upsert on machine_id, so a repeated click can't create duplicate state rows."""
-    status = {"claim": "claimed", "resolve": "resolved", "reopen": "open"}.get(action)
+def apply(
+    ws: WorkspaceClient, machine_id: str, action: str, actor: str | None, note: str | None, risk_7d: float | None = None
+) -> dict[str, Any]:
+    """Upsert on machine_id, so a repeated click can't create duplicate state rows.
+
+    found_issue / false_alarm resolve the machine and log the outcome with the model's risk at that moment.
+    """
+    status = {
+        "claim": "claimed", "resolve": "resolved", "found_issue": "resolved", "false_alarm": "resolved", "reopen": "open",
+    }.get(action)
     with _connect(ws) as conn:
         if status:
             row = conn.execute(
@@ -120,8 +128,8 @@ def apply(ws: WorkspaceClient, machine_id: str, action: str, actor: str | None, 
                 {"m": machine_id, "n": note},
             ).fetchone()
         conn.execute(
-            "INSERT INTO worklist.action_log (machine_id, action, actor, note) VALUES (%s, %s, %s, %s)",
-            (machine_id, action, actor, note),
+            "INSERT INTO worklist.action_log (machine_id, action, actor, note, risk_7d) VALUES (%s, %s, %s, %s, %s)",
+            (machine_id, action, actor, note, risk_7d),
         )
         conn.commit()
     assert row is not None

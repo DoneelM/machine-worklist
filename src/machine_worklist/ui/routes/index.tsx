@@ -2,23 +2,25 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { AlertTriangle, Check, CircleDot, Hand, RotateCcw, StickyNote } from "lucide-react";
+import { AlertTriangle, Check, CircleDot, Hand, RotateCcw, SearchCheck, StickyNote, X } from "lucide-react";
 
 import {
   type ActionIn,
   type MachineDetailOut,
+  type ModelEvalOut,
   type WorklistItem,
   type WorklistOut,
   ApiError,
   useApplyAction,
   useGetFilters,
   useGetMachine,
+  useGetModelEval,
   useGetWorklist,
 } from "@/lib/api";
 import selector from "@/lib/selector";
 import { Button } from "@/components/ui/button";
 import { TrendChart } from "@/components/worklist/TrendChart";
-import { pct, reason, shortName, statusLabel } from "@/components/worklist/format";
+import { driverEffect, driverText, lift, pct, reason, shortName, statusLabel } from "@/components/worklist/format";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -70,7 +72,7 @@ function Worklist() {
             </p>
           </div>
           <p className="text-xs text-muted-foreground">
-            Synthetic demo data · 14 days to {asOf ?? "…"} · score 40% vibration, 35% defects, 25% yield
+            Synthetic demo data · 14 days to {asOf ?? "…"} · score 40% vibration, 35% defects, 25% yield · model is a second opinion
           </p>
         </div>
       </header>
@@ -97,6 +99,8 @@ function Worklist() {
             {list.isSuccess && `Showing ${items.length} of ${list.data.items.length} machines`}
           </p>
         </div>
+
+        <ModelEvidence />
 
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_420px]">
           <Queue
@@ -186,7 +190,7 @@ function Queue({
     }
   };
 
-  const head = "grid grid-cols-[2.5rem_6.5rem_minmax(0,1fr)_4rem_6.5rem] items-center gap-3 px-4";
+  const head = "grid grid-cols-[2.5rem_6.5rem_minmax(0,1fr)_4rem_4.5rem_6.5rem] items-center gap-3 px-4";
 
   return (
     <section className="overflow-hidden rounded-md border border-border bg-card" aria-label="Worklist">
@@ -195,6 +199,9 @@ function Queue({
         <span>Machine</span>
         <span>Why it's here</span>
         <span className="text-right">Score</span>
+        <span className="text-right" title="Model risk of being in the fleet's worst 10% next week, as a multiple of today's fleet average">
+          Model
+        </span>
         <span>Status</span>
       </div>
 
@@ -260,6 +267,7 @@ function Queue({
               <span className="text-right font-mono text-base font-medium max-sm:col-start-3 max-sm:row-start-1">
                 {item.attention_score.toFixed(0)}
               </span>
+              <ModelCell item={item} />
               <span className="max-sm:col-start-3 max-sm:row-start-2">
                 <StatusTag status={item.action.status} owner={item.action.owner} />
               </span>
@@ -343,6 +351,8 @@ function Detail({ machineId, actionsEnabled }: { machineId: string; actionsEnabl
         </dl>
       </div>
 
+      <SecondOpinion item={it} />
+
       <ActionPanel key={it.machine_id} item={it} enabled={actionsEnabled} />
 
       <div className="space-y-5 p-5">
@@ -378,7 +388,82 @@ function Detail({ machineId, actionsEnabled }: { machineId: string; actionsEnabl
   );
 }
 
-const pastTense: Record<string, string> = { claim: "claimed it", note: "added a note", resolve: "resolved it", reopen: "reopened it" };
+const pastTense: Record<string, string> = {
+  claim: "claimed it",
+  note: "added a note",
+  resolve: "resolved it",
+  found_issue: "found an issue",
+  false_alarm: "marked it a false alarm",
+  reopen: "reopened it",
+};
+
+const MODEL_TOP = 20; // a crew's daily inspection capacity, as in the evaluation
+
+function ModelCell({ item }: { item: WorklistItem }) {
+  const top = item.risk_rank != null && item.risk_rank <= MODEL_TOP;
+  return (
+    <span
+      className={cn("text-right font-mono text-sm max-sm:hidden", top ? "font-medium text-signal" : "text-muted-foreground")}
+      title={item.risk_rank != null ? `Model ranks it #${item.risk_rank}${top ? " (in its top 20)" : ""}` : "Not scored yet"}
+    >
+      {top && <span className="mr-1 inline-block size-1.5 rounded-full bg-signal align-middle" aria-hidden />}
+      {lift(item.risk_lift)}
+      {top && <span className="sr-only"> (model top 20)</span>}
+    </span>
+  );
+}
+
+function SecondOpinion({ item }: { item: WorklistItem }) {
+  if (item.risk_rank == null) return null;
+  const top = item.risk_rank <= MODEL_TOP;
+  const raising = (item.drivers ?? []).filter((d) => d.contribution > 0.001);
+  return (
+    <div className="space-y-2 p-5 text-sm">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-medium">Model second opinion</h3>
+        <span className={cn("font-mono", top && "font-medium text-signal")}>
+          {lift(item.risk_lift)} <span className="text-xs font-normal text-muted-foreground">fleet avg</span>
+        </span>
+      </div>
+      <p className="text-muted-foreground">
+        Ranks it #{item.risk_rank} of the fleet for next week{top ? ", inside its top 20." : "."}
+      </p>
+      {raising.length > 0 && (
+        <ul className="space-y-1" aria-label="What raises the model's risk">
+          {raising.map((d) => (
+            <li key={d.feature} className="flex justify-between gap-3">
+              <span className="min-w-0 truncate" title={driverText(d)}>
+                {driverText(d)}
+              </span>
+              <span className="shrink-0 font-mono text-xs text-muted-foreground">{driverEffect(d)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="text-xs text-muted-foreground">Effect = risk now minus risk if that reading were typical for its type.</p>
+    </div>
+  );
+}
+
+function ModelEvidence() {
+  const q = useGetModelEval(selector<ModelEvalOut | null>());
+  const e = q.data;
+  if (!e) return null;
+  const fmt = (d: string) => new Date(d).toLocaleDateString("en-NZ", { day: "numeric", month: "short", timeZone: "UTC" });
+  return (
+    <section aria-label="Rule versus model" className="mb-4 rounded-md border border-border bg-card px-4 py-3 text-sm">
+      <p>
+        <span className="font-medium">Rule vs model, {fmt(e.test_start)}–{fmt(e.test_end)}: </span>
+        of the {e.crew_capacity} machines each would send a crew to daily, <span className="font-mono">{pct(e.rule_precision_at_20)}</span> (rule) and{" "}
+        <span className="font-mono">{pct(e.model_precision_at_20)}</span> (model v{e.model_version}) landed in the fleet's worst 10% the next week,
+        against <span className="font-mono">{pct(e.base_rate, 1)}</span> picking at random. A tie, so the rule keeps the ranking.
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        Overall ranking (AUC): rule {e.rule_auc.toFixed(2)}, model {e.model_auc.toFixed(2)}. Marking outcomes below builds the labels to retest on real inspections.
+      </p>
+    </section>
+  );
+}
 
 function Fact({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
@@ -449,9 +534,14 @@ function ActionPanel({ item, enabled }: { item: WorklistItem; enabled: boolean }
           </Button>
         )}
         {st !== "resolved" && (
-          <Button size="sm" variant={st === "claimed" ? "default" : "outline"} onClick={() => run("resolve")} disabled={!enabled || busy}>
-            <Check className="size-4" aria-hidden /> {busy && m.variables?.data.action === "resolve" ? "Resolving…" : "Mark resolved"}
-          </Button>
+          <>
+            <Button size="sm" variant={st === "claimed" ? "default" : "outline"} onClick={() => run("found_issue")} disabled={!enabled || busy}>
+              <SearchCheck className="size-4" aria-hidden /> {busy && m.variables?.data.action === "found_issue" ? "Saving…" : "Found an issue"}
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => run("false_alarm")} disabled={!enabled || busy}>
+              <X className="size-4" aria-hidden /> {busy && m.variables?.data.action === "false_alarm" ? "Saving…" : "False alarm"}
+            </Button>
+          </>
         )}
         {st === "resolved" && (
           <Button size="sm" variant="outline" onClick={() => run("reopen")} disabled={!enabled || busy}>

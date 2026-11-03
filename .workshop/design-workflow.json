@@ -1,7 +1,7 @@
 {
   "assumptions": [],
   "attendee": "labuser+42@awsbricks.com",
-  "brief_revision": 6,
+  "brief_revision": 10,
   "decisions": [
     {
       "at": "2026-11-03T20:39:29Z",
@@ -22,6 +22,26 @@
       "at": "2026-11-03T21:07:33Z",
       "by": "attendee",
       "text": "Git: local commits only, one commit per build step; export ZIP at end"
+    },
+    {
+      "at": "2026-11-03T21:10:14Z",
+      "by": "attendee",
+      "text": "Label = 11+ major/critical defects in next 7 days (worst ~10% of machine-weeks); replaces 'any serious defect'"
+    },
+    {
+      "at": "2026-11-03T21:18:27Z",
+      "by": "attendee",
+      "text": "Model: sklearn HistGradientBoosting (no PyPI on serverless); drivers = what-if (replace feature with typical training value), not SHAP"
+    },
+    {
+      "at": "2026-11-03T21:28:34Z",
+      "by": "attendee",
+      "text": "Label = machine in fleet's worst 10% by major/critical defects over next 7 days (relative, per day); replaces absolute 11+"
+    },
+    {
+      "at": "2026-11-03T22:00:07Z",
+      "by": "attendee",
+      "text": "App: rank by rule; model shown as second opinion (lift vs fleet average, what-if drivers) + rule-vs-model evidence panel"
     }
   ],
   "direction": null,
@@ -117,7 +137,7 @@
   "project": "machine-worklist",
   "questions": [],
   "requests": [],
-  "revision": 12,
+  "revision": 16,
   "schema": "workshop-design-workflow",
   "success_criteria": [],
   "version": 1,

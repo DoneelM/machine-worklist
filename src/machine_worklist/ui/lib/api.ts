@@ -13,7 +13,7 @@ export class ApiError extends Error {
     }
 }
 export interface ActionIn {
-    action: "claim" | "note" | "resolve" | "reopen";
+    action: "claim" | "note" | "resolve" | "found_issue" | "false_alarm" | "reopen";
     note?: string | null;
 }
 export interface ActionState {
@@ -62,9 +62,29 @@ export interface MachineDetailOut {
     vib_baseline: number;
     vib_recent: number;
 }
+export interface ModelEvalOut {
+    base_rate: number;
+    crew_capacity: number;
+    label: string;
+    model_auc: number;
+    model_precision_at_20: number;
+    model_version: string;
+    rule_auc: number;
+    rule_precision_at_20: number;
+    test_end: string;
+    test_start: string;
+    train_end: string;
+}
 export interface Name {
     family_name?: string | null;
     given_name?: string | null;
+}
+export interface RiskDriver {
+    contribution: number;
+    feature: string;
+    label: string;
+    percentile?: number | null;
+    value: number | string;
 }
 export interface User {
     active?: boolean | null;
@@ -99,10 +119,14 @@ export interface WorklistItem {
     attention_score: number;
     critical_defects: number;
     defects_per_1k: number;
+    drivers?: RiskDriver[];
     line: string;
     machine_id: string;
     machine_type: string;
     plant: string;
+    risk_7d?: number | null;
+    risk_lift?: number | null;
+    risk_rank?: number | null;
     serious_defects: number;
     top_driver: "vibration" | "defects" | "yield";
     vib_trend: number;
@@ -112,6 +136,7 @@ export interface WorklistOut {
     actions_enabled: boolean;
     as_of: string;
     items: WorklistItem[];
+    risk_scored_for?: string | null;
 }
 export interface CurrentUserParams {
     "X-Forwarded-Host"?: string | null;
@@ -373,6 +398,58 @@ export function useApplyAction(options?: {
         ...options?.mutation
     });
 }
+export const getModelEval = async (options?: RequestInit): Promise<{
+    data: ModelEvalOut | null;
+}> =>{
+    const res = await fetch("/api/model-eval", {
+        ...options,
+        method: "GET"
+    });
+    if (!res.ok) {
+        const body = await res.text();
+        let parsed: unknown;
+        try {
+            parsed = JSON.parse(body);
+        } catch  {
+            parsed = body;
+        }
+        throw new ApiError(res.status, res.statusText, parsed);
+    }
+    return {
+        data: await res.json()
+    };
+};
+export const getModelEvalKey = ()=>{
+    return [
+        "/api/model-eval"
+    ] as const;
+};
+export function useGetModelEval<TData = {
+    data: ModelEvalOut | null;
+}>(options?: {
+    query?: Omit<UseQueryOptions<{
+        data: ModelEvalOut | null;
+    }, ApiError, TData>, "queryKey" | "queryFn">;
+}) {
+    return useQuery({
+        queryKey: getModelEvalKey(),
+        queryFn: ()=>getModelEval(),
+        ...options?.query
+    });
+}
+export function useGetModelEvalSuspense<TData = {
+    data: ModelEvalOut | null;
+}>(options?: {
+    query?: Omit<UseSuspenseQueryOptions<{
+        data: ModelEvalOut | null;
+    }, ApiError, TData>, "queryKey" | "queryFn">;
+}) {
+    return useSuspenseQuery({
+        queryKey: getModelEvalKey(),
+        queryFn: ()=>getModelEval(),
+        ...options?.query
+    });
+}
 export const version = async (options?: RequestInit): Promise<{
     data: VersionOut;
 }> =>{
@@ -428,6 +505,7 @@ export function useVersionSuspense<TData = {
 export interface GetWorklistParams {
     plant?: string;
     machine_type?: string;
+    sort?: "score" | "risk";
 }
 export const getWorklist = async (params?: GetWorklistParams, options?: RequestInit): Promise<{
     data: WorklistOut;
@@ -435,6 +513,7 @@ export const getWorklist = async (params?: GetWorklistParams, options?: RequestI
     const searchParams = new URLSearchParams();
     if (params?.plant != null) searchParams.set("plant", String(params?.plant));
     if (params?.machine_type != null) searchParams.set("machine_type", String(params?.machine_type));
+    if (params?.sort != null) searchParams.set("sort", String(params?.sort));
     const queryString = searchParams.toString();
     const url = queryString ? `/api/worklist?${queryString}` : "/api/worklist";
     const res = await fetch(url, {

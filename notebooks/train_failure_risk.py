@@ -1,7 +1,8 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC # 7-day failure early warning (synthetic demo data)
-# MAGIC Predicts a **bad week**: 11+ major/critical defects on a machine in the next 7 days.
+# MAGIC Predicts whether a machine will be in the **fleet's worst 10%** by major/critical defects over the next 7 days.
+# MAGIC (An absolute "11+ defects" label drifted from ~9% to ~41% of days as the fleet wore, so the target is relative.)
 # MAGIC Reads `nzlabs_031.default.machine_features_daily` (built by `sql/machine_features_daily.sql`).
 # MAGIC
 # MAGIC 1. Time split: train on older days, test on the last ~3 weeks, with a 7-day gap so training labels never see test days.
@@ -26,6 +27,7 @@ from sklearn.metrics import roc_auc_score
 CATALOG_SCHEMA = "nzlabs_031.default"
 MODEL_NAME = f"{CATALOG_SCHEMA}.failure_risk_7d"
 CREW_CAPACITY = 20  # machines inspected per day
+LABEL = "label_top10_fleet"  # worst 10% of the fleet next week; relative, so it holds as machines wear
 
 FEATURES = [
     "age_days", "vib_7d", "vib_14d", "vib_vs_30d", "vib_trend", "temp_7d", "temp_trend",
@@ -58,7 +60,7 @@ for c in num_cols:
     df[f"{c}_fleet"] = RAW[c].groupby(df["day"]).rank(pct=True)
 MODEL_FEATURES = FEATURES + [f"{c}_fleet" for c in num_cols]
 
-labelled = df[df["label_bad_week"].notna()].copy()
+labelled = df[df[LABEL].notna()].copy()
 last_labelled = labelled["day"].max()
 test_start = last_labelled - pd.Timedelta(days=20)
 train_end = test_start - pd.Timedelta(days=8)  # 7-day embargo: training labels stop before test days
@@ -76,7 +78,7 @@ def rule_score(frame: pd.DataFrame) -> pd.Series:
 
 def precision_at_k(frame: pd.DataFrame, score: str, k: int = CREW_CAPACITY) -> float:
     top = frame.sort_values(score, ascending=False).groupby("day").head(k)
-    return float(top["label_bad_week"].mean())
+    return float(top[LABEL].mean())
 
 
 params = {"learning_rate": 0.05, "max_iter": 300, "max_leaf_nodes": 31, "min_samples_leaf": 50,
@@ -85,22 +87,22 @@ params = {"learning_rate": 0.05, "max_iter": 300, "max_leaf_nodes": 31, "min_sam
 mlflow.set_registry_uri("databricks-uc")
 with mlflow.start_run(run_name="failure_risk_7d") as run:
     model = HistGradientBoostingClassifier(**params)
-    model.fit(train[MODEL_FEATURES], train["label_bad_week"].astype(int))
+    model.fit(train[MODEL_FEATURES], train[LABEL].astype(int))
 
     test = test.assign(model_score=model.predict_proba(test[MODEL_FEATURES])[:, 1], rule_score=rule_score(test))
     metrics = {
-        "base_rate": float(test["label_bad_week"].mean()),
-        "model_auc": roc_auc_score(test["label_bad_week"], test["model_score"]),
-        "rule_auc": roc_auc_score(test["label_bad_week"], test["rule_score"]),
+        "base_rate": float(test[LABEL].mean()),
+        "model_auc": roc_auc_score(test[LABEL], test["model_score"]),
+        "rule_auc": roc_auc_score(test[LABEL], test["rule_score"]),
         "model_precision_at_20": precision_at_k(test, "model_score"),
         "rule_precision_at_20": precision_at_k(test, "rule_score"),
         "train_rows": len(train), "test_rows": len(test),
     }
     mlflow.log_params({**params, "train_end": str(train_end.date()), "test_start": str(test_start.date()),
-                       "label": "11+ major/critical defects in next 7 days"})
+                       "label": "worst 10% of fleet by major/critical defects, next 7 days"})
     mlflow.log_metrics(metrics)
     sample_test = test.sample(n=min(6000, len(test)), random_state=0)
-    perm = permutation_importance(model, sample_test[MODEL_FEATURES], sample_test["label_bad_week"].astype(int),
+    perm = permutation_importance(model, sample_test[MODEL_FEATURES], sample_test[LABEL].astype(int),
                                   scoring="roc_auc", n_repeats=3, random_state=0)
     importance = pd.Series(perm.importances_mean, index=MODEL_FEATURES).sort_values(ascending=False)  # AUC lost when shuffled
     mlflow.log_dict(importance.round(4).to_dict(), "permutation_importance_auc.json")
@@ -138,11 +140,20 @@ latest["drivers"] = drivers
 latest["risk_rank"] = latest["risk_7d"].rank(ascending=False, method="first").astype(int)
 latest["model_version"] = str(info.registered_model_version)
 
-out = latest[["machine_id", "day", "risk_7d", "risk_rank", "drivers", "model_version"]].rename(columns={"day": "scored_for_day"})
+latest["risk_lift"] = (latest["risk_7d"] / latest["risk_7d"].mean()).round(2)  # x the fleet average today
+out = latest[["machine_id", "day", "risk_7d", "risk_lift", "risk_rank", "drivers", "model_version"]].rename(columns={"day": "scored_for_day"})
 out["risk_7d"] = out["risk_7d"].round(4)
 spark.createDataFrame(out).write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG_SCHEMA}.machine_risk_7d")
 spark.sql(f"COMMENT ON TABLE {CATALOG_SCHEMA}.machine_risk_7d IS "
-          "'7-day bad-week risk per machine (synthetic demo data). drivers = top 3 what-if contributions (risk minus risk with that feature at a typical value) as JSON.'")
+          "'7-day risk of being in the fleet''s worst 10% per machine (synthetic demo data). drivers = top 3 what-if contributions (risk minus risk with that feature at a typical value) as JSON.'")
+
+# One-row evaluation summary the app shows next to the model column.
+evaluation = pd.DataFrame([{
+    "model_version": str(info.registered_model_version), "label": "Worst 10% of fleet by major/critical defects, next 7 days",
+    "train_end": train_end.date(), "test_start": test_start.date(), "test_end": last_labelled.date(),
+    "crew_capacity": CREW_CAPACITY, **{k: float(v) for k, v in metrics.items() if k.endswith(("auc", "_20", "rate"))},
+}])
+spark.createDataFrame(evaluation).write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG_SCHEMA}.failure_risk_eval")
 
 dbutils.notebook.exit(json.dumps({
     **{k: round(v, 4) if isinstance(v, float) else v for k, v in metrics.items()},
