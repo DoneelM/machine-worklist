@@ -66,18 +66,19 @@ function Worklist() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="border-b border-border bg-card">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-x-8 gap-y-2 px-6 py-4">
-          <div>
+        <div className="mx-auto flex max-w-[1400px] items-start justify-between gap-6 px-6 py-4">
+          <div className="min-w-0">
             <h1 className="text-xl font-semibold tracking-tight">Machine attention</h1>
             <p className="text-sm text-muted-foreground">
               Which machine to look at next, ranked on vibration and temperature change, serious defects and lost output.
             </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Synthetic demo data · 14 days to {asOf ?? "…"} · score 30% vibration, 15% temperature, 30% defects, 25% yield · model is a
+              second opinion
+            </p>
           </div>
-          <div className="flex flex-col items-end gap-2">
-          <AskButton onClick={() => setAskOpen(true)} />
-          <p className="text-xs text-muted-foreground">
-            Synthetic demo data · 14 days to {asOf ?? "…"} · score 30% vibration, 15% temperature, 30% defects, 25% yield · model is a second opinion
-          </p>
+          <div className="shrink-0">
+            <AskButton onClick={() => setAskOpen(true)} />
           </div>
         </div>
       </header>

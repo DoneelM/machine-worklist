@@ -121,6 +121,46 @@
           "unlabelled_controls": 0,
           "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
           "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 124140,
+          "captured_at": "2026-11-03T22:14:53Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T221448Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "37f58235a59fd52f3ba8b540d07bb8bc9aff4766",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "658ce47f796aea4074b4d4d6384682b0e558b036f119dcebf67c80e565ef6fff",
+          "text_chars": 35598,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
+        },
+        {
+          "action": null,
+          "bytes": 124140,
+          "captured_at": "2026-11-03T22:14:59Z",
+          "controls": 16,
+          "kind": "screenshot",
+          "label": "initial",
+          "path": ".workshop/evidence/20261103T221455Z-deployed-desktop-initial.png",
+          "revision": {
+            "commit": "37f58235a59fd52f3ba8b540d07bb8bc9aff4766",
+            "dirty": ""
+          },
+          "scope": "deployed",
+          "sha256": "731f0e1bc450339809f5b6f1424db1acb8fd0bba176daeb20158eceac96f4344",
+          "text_chars": 35598,
+          "title": "machine-worklist | Created via apx",
+          "unlabelled_controls": 0,
+          "url": "https://machine-worklist-7474644914236022.aws.databricksapps.com",
+          "viewport": "desktop"
         }
       ]
     }
@@ -193,6 +233,20 @@
       "kinds": [
         "screenshot"
       ]
+    },
+    {
+      "at": "2026-11-03T22:14:53Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
+    },
+    {
+      "at": "2026-11-03T22:14:59Z",
+      "event": "evidence",
+      "kinds": [
+        "screenshot"
+      ]
     }
   ],
   "outcome": null,
@@ -206,7 +260,7 @@
   "project": "machine-worklist",
   "questions": [],
   "requests": [],
-  "revision": 22,
+  "revision": 25,
   "schema": "workshop-design-workflow",
   "success_criteria": [],
   "version": 1,
