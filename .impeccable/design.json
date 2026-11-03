@@ -1,0 +1,673 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-03T23:21:44+00:00",
+  "title": "Design System: Machine Worklist",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Cool Ground",
+        "canonical": "#F4F6F8",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#242526",
+          "#414244",
+          "#606163",
+          "#818284",
+          "#A3A5A7",
+          "#C8C9CA",
+          "#EEEEEF"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#0F1E26",
+        "tonalRamp": [
+          "#060C10",
+          "#1A272E",
+          "#34454E",
+          "#53646E",
+          "#748590",
+          "#97A8B1",
+          "#C1CBD1",
+          "#ECEFF1"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Work Surface",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "petrol-shell": {
+        "role": "primary",
+        "displayName": "Deep Petrol",
+        "canonical": "#0E3B47",
+        "tonalRamp": [
+          "#010D12",
+          "#052A33",
+          "#1D4855",
+          "#3E6875",
+          "#5F8A98",
+          "#85ACB9",
+          "#B7CED5",
+          "#E9F0F2"
+        ]
+      },
+      "shell-raised": {
+        "role": "primary",
+        "displayName": "Raised Petrol",
+        "canonical": "#15505F",
+        "tonalRamp": [
+          "#000E13",
+          "#002A35",
+          "#0C4A59",
+          "#326A79",
+          "#548C9C",
+          "#7DAEBD",
+          "#B2CFD8",
+          "#E7F0F3"
+        ]
+      },
+      "shell-line": {
+        "role": "primary",
+        "displayName": "Petrol Hairline",
+        "canonical": "#2A6475",
+        "tonalRamp": [
+          "#000E13",
+          "#012A35",
+          "#084A5A",
+          "#306A7B",
+          "#538C9E",
+          "#7BAEBF",
+          "#B1CFD9",
+          "#E7F0F3"
+        ]
+      },
+      "shell-foreground": {
+        "role": "primary",
+        "displayName": "Shell Paper",
+        "canonical": "#F2F7F8",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#232626",
+          "#3F4344",
+          "#5E6263",
+          "#7F8384",
+          "#A2A6A7",
+          "#C7CACA",
+          "#EEEEEF"
+        ]
+      },
+      "shell-muted": {
+        "role": "primary",
+        "displayName": "Shell Mist",
+        "canonical": "#A9C4CB",
+        "tonalRamp": [
+          "#050D0F",
+          "#16282D",
+          "#2F464C",
+          "#4D666C",
+          "#6E878E",
+          "#92AAB0",
+          "#BECCD0",
+          "#EBEFF0"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Petrol (action)",
+        "canonical": "#0E3B47",
+        "tonalRamp": [
+          "#010D12",
+          "#052A33",
+          "#1D4855",
+          "#3E6875",
+          "#5F8A98",
+          "#85ACB9",
+          "#B7CED5",
+          "#E9F0F2"
+        ]
+      },
+      "primary-foreground": {
+        "role": "primary",
+        "displayName": "On Petrol",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Mist Panel",
+        "canonical": "#EEF1F4",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#232527",
+          "#404245",
+          "#5F6164",
+          "#808385",
+          "#A3A5A8",
+          "#C8C9CB",
+          "#EEEEEF"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#4F5F68",
+        "tonalRamp": [
+          "#070C0F",
+          "#1B272E",
+          "#35444D",
+          "#54646D",
+          "#74858F",
+          "#98A8B1",
+          "#C1CBD0",
+          "#ECEFF1"
+        ]
+      },
+      "accent": {
+        "role": "neutral",
+        "displayName": "Hover Tint",
+        "canonical": "#E7EEF1",
+        "tonalRamp": [
+          "#090C0C",
+          "#212628",
+          "#3D4345",
+          "#5C6265",
+          "#7D8386",
+          "#A0A6A9",
+          "#C6CACB",
+          "#EDEFEF"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#DCE2E7",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#222629",
+          "#3E4347",
+          "#5D6266",
+          "#7E8388",
+          "#A1A6AA",
+          "#C6C9CC",
+          "#EDEEEF"
+        ]
+      },
+      "input": {
+        "role": "neutral",
+        "displayName": "Field Edge",
+        "canonical": "#B7C2CA",
+        "tonalRamp": [
+          "#080C0E",
+          "#1F262B",
+          "#3A434A",
+          "#59636A",
+          "#7A848B",
+          "#9DA7AD",
+          "#C4CACE",
+          "#EDEFF0"
+        ]
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Teal Ring",
+        "canonical": "#0E7490",
+        "tonalRamp": [
+          "#000D13",
+          "#002A36",
+          "#024A5D",
+          "#016C87",
+          "#358EAB",
+          "#66B1CB",
+          "#A7D1E1",
+          "#E4F1F6"
+        ]
+      },
+      "track": {
+        "role": "neutral",
+        "displayName": "Track",
+        "canonical": "#E6EBEF",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#222528",
+          "#3F4346",
+          "#5E6265",
+          "#7E8387",
+          "#A1A6A9",
+          "#C7C9CB",
+          "#EEEEEF"
+        ]
+      },
+      "signal": {
+        "role": "secondary",
+        "displayName": "Amber Signal",
+        "canonical": "#B45309",
+        "tonalRamp": [
+          "#180500",
+          "#3F1800",
+          "#6B2D00",
+          "#9A4501",
+          "#C56323",
+          "#E68B57",
+          "#F3BB9E",
+          "#FCEAE1"
+        ]
+      },
+      "signal-strong": {
+        "role": "secondary",
+        "displayName": "Amber Strong",
+        "canonical": "#D97706",
+        "tonalRamp": [
+          "#160700",
+          "#3B1C00",
+          "#643401",
+          "#914D00",
+          "#C06905",
+          "#E58D40",
+          "#F3BC94",
+          "#FCEBDE"
+        ]
+      },
+      "signal-soft": {
+        "role": "secondary",
+        "displayName": "Amber Wash",
+        "canonical": "#FDF0DC",
+        "tonalRamp": [
+          "#0E0A05",
+          "#2C2417",
+          "#4B4030",
+          "#6B604E",
+          "#8C816F",
+          "#AEA393",
+          "#CFC8BE",
+          "#F0EEEB"
+        ]
+      },
+      "signal-ink": {
+        "role": "secondary",
+        "displayName": "Amber Ink",
+        "canonical": "#7A3A06",
+        "tonalRamp": [
+          "#170600",
+          "#3E1900",
+          "#692F00",
+          "#8F4D20",
+          "#B46F43",
+          "#D5946D",
+          "#E8C0A9",
+          "#F8ECE4"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Resolved Green",
+        "canonical": "#1A7F43",
+        "tonalRamp": [
+          "#001004",
+          "#012E13",
+          "#025026",
+          "#04753A",
+          "#3A985A",
+          "#6ABA81",
+          "#A9D6B4",
+          "#E5F3E8"
+        ]
+      },
+      "success-soft": {
+        "role": "tertiary",
+        "displayName": "Resolved Wash",
+        "canonical": "#DDF3E5",
+        "tonalRamp": [
+          "#060D09",
+          "#1B2920",
+          "#35473C",
+          "#54675B",
+          "#74887C",
+          "#98AA9F",
+          "#C1CCC5",
+          "#ECEFED"
+        ]
+      },
+      "critical": {
+        "role": "tertiary",
+        "displayName": "Critical Red",
+        "canonical": "#B42318",
+        "tonalRamp": [
+          "#1F0000",
+          "#4D0000",
+          "#800200",
+          "#B12015",
+          "#DA4A3B",
+          "#FA7867",
+          "#FEB3A7",
+          "#FEE9E6"
+        ]
+      },
+      "chart-score": {
+        "role": "neutral",
+        "displayName": "Score Teal",
+        "canonical": "#0E5A6B",
+        "tonalRamp": [
+          "#000E13",
+          "#022A34",
+          "#024A59",
+          "#266B7D",
+          "#4A8D9F",
+          "#75AFC0",
+          "#AED0DA",
+          "#E6F1F4"
+        ]
+      },
+      "chart-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Slate",
+        "canonical": "#8796A0",
+        "tonalRamp": [
+          "#070C0F",
+          "#1C272D",
+          "#37444D",
+          "#55636D",
+          "#76858E",
+          "#9AA7B0",
+          "#C2CAD0",
+          "#ECEFF1"
+        ]
+      }
+    },
+    "darkMode": {
+      "selector": ".dark",
+      "default": "light",
+      "mapping": {
+        "ground": "#0B151A",
+        "ink": "#E6EEF1",
+        "card": "#111E24",
+        "petrol-shell": "#0A2830",
+        "shell-raised": "#103741",
+        "shell-line": "#1E4E5A",
+        "shell-foreground": "#EAF4F6",
+        "shell-muted": "#93B3BB",
+        "primary": "#5CC3D6",
+        "primary-foreground": "#06232B",
+        "muted": "#16252C",
+        "muted-foreground": "#9BB0B8",
+        "accent": "#1A2C34",
+        "border": "#23343C",
+        "input": "#3A4F59",
+        "ring": "#5CC3D6",
+        "track": "#22333B",
+        "signal": "#F5A524",
+        "signal-strong": "#F5A524",
+        "signal-soft": "#3A2A10",
+        "signal-ink": "#FBD38D",
+        "success": "#4ACB7E",
+        "success-soft": "#12301F",
+        "critical": "#F0705F",
+        "chart-score": "#5CC3D6",
+        "chart-quiet": "#6E848E"
+      },
+      "notes": "Same role names remap under .dark; html color-scheme follows the theme."
+    },
+    "cssVariables": {
+      "petrol-shell": "--shell",
+      "shell-raised": "--shell-raised",
+      "shell-line": "--shell-line",
+      "shell-foreground": "--shell-foreground",
+      "shell-muted": "--shell-muted",
+      "ground": "--background",
+      "ink": "--foreground",
+      "card": "--card",
+      "critical": "--destructive",
+      "chart-score": "--chart-1",
+      "chart-quiet": "--chart-3"
+    },
+    "typographyMeta": {
+      "title": {
+        "displayName": "Title",
+        "purpose": "Page title on the shell band."
+      },
+      "kpi-value": {
+        "displayName": "KPI value",
+        "purpose": "KPI tile values; optional 0.9375rem unit beside."
+      },
+      "detail-score": {
+        "displayName": "Detail score",
+        "purpose": "The one large score in the detail panel."
+      },
+      "machine-id-heading": {
+        "displayName": "Machine ID heading",
+        "purpose": "Machine name heading in the detail panel."
+      },
+      "machine-id": {
+        "displayName": "Machine ID",
+        "purpose": "Machine ID in each queue row."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Row score beside the bar; fact values."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Row reasons, select values, notes, detail prose. Global 15px base with tnum and ss01."
+      },
+      "section-heading": {
+        "displayName": "Section heading",
+        "purpose": "Action, Model second opinion, Activity."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Column headers, KPI labels and captions, field labels, pills, ranks, timestamps, capacity-line label. Smallest size in the core surface."
+      }
+    },
+    "shadows": [
+      {
+        "name": "work-surface",
+        "value": "0 1px 2px rgb(15 30 38 / 0.05), 0 6px 16px -8px rgb(15 30 38 / 0.10)",
+        "purpose": "Queue, detail panel and their loading/error states."
+      },
+      {
+        "name": "side-sheet",
+        "value": "-12px 0 32px -12px rgb(15 30 38 / 0.25)",
+        "purpose": "Ask the data panel while open; removed when closed."
+      }
+    ],
+    "focus": [
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px",
+        "purpose": "All keyboard focus."
+      },
+      {
+        "name": "focus-row",
+        "value": "outline-offset: -2px; border-radius: 0",
+        "purpose": "Queue rows keep a square inset outline."
+      },
+      {
+        "name": "selection",
+        "value": "::selection { background: var(--signal-soft); color: var(--foreground) }",
+        "purpose": "Text selection carries the amber wash."
+      },
+      {
+        "name": "caret",
+        "value": "caret-color: var(--ring)",
+        "purpose": "Inputs and textareas."
+      },
+      {
+        "name": "scrollbar",
+        "value": "scrollbar-color: var(--input) transparent; scrollbar-width: thin",
+        "purpose": "All scroll areas."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-color",
+        "value": "color, background-color, border-color 150ms",
+        "purpose": "KPI tiles, queue rows, filter controls."
+      },
+      {
+        "name": "sheet-slide",
+        "value": "transform, visibility 200ms",
+        "purpose": "Ask the data panel in and out."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Below: queue collapses to three columns; header row, score track and model column hidden."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "KPI grid 4-up; list plus 400px sticky detail."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Detail panel widens to 440px."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "KPI Tile (filter button)",
+      "kind": "custom",
+      "refersTo": "kpi-tile",
+      "description": "Count tile on the petrol band that toggles a list filter (aria-pressed).",
+      "html": "<div class=\"ds-band\"><button class=\"ds-kpi\" aria-pressed=\"false\"><span class=\"ds-kpi-label\">To inspect today</span><span class=\"ds-kpi-row\"><span class=\"ds-kpi-value\">20</span></span><span class=\"ds-kpi-sub\">Crew capacity, top of the rule's ranking</span></button><button class=\"ds-kpi\" aria-pressed=\"true\"><span class=\"ds-kpi-label\">Model agrees</span><span class=\"ds-kpi-row\"><span class=\"ds-kpi-value\">4</span><span class=\"ds-kpi-unit\">of 20</span></span><span class=\"ds-kpi-sub\">Showing only these · click to clear</span></button></div>",
+      "css": ".ds-band { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 24px; background: var(--shell); font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; font-feature-settings: 'tnum' 1; } .ds-kpi { display: block; text-align: left; border-radius: 14px; border: 1px solid var(--shell-line); background: color-mix(in srgb, var(--shell-raised) 60%, transparent); color: var(--shell-foreground); padding: 10px 16px; cursor: pointer; transition: background-color 150ms, border-color 150ms, color 150ms; } .ds-kpi:hover { border-color: var(--shell-muted); background: var(--shell-raised); } .ds-kpi:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-kpi[aria-pressed='true'] { background: var(--shell-foreground); color: var(--shell); border-color: var(--signal-strong); } .ds-kpi-label { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--shell-muted); } .ds-kpi-row { display: flex; align-items: baseline; gap: 6px; margin-top: 4px; } .ds-kpi-value { font-size: 1.75rem; line-height: 1; font-weight: 600; letter-spacing: -0.02em; } .ds-kpi-unit { font-size: 0.9375rem; color: var(--shell-muted); } .ds-kpi-sub { display: block; margin-top: 6px; font-size: 0.8125rem; color: var(--shell-muted); } .ds-kpi[aria-pressed='true'] .ds-kpi-label, .ds-kpi[aria-pressed='true'] .ds-kpi-unit, .ds-kpi[aria-pressed='true'] .ds-kpi-sub { color: color-mix(in srgb, var(--shell) 75%, transparent); }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The next step for the current state (Take this one / Found an issue).",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 11V6a2 2 0 0 0-4 0v5\"/><path d=\"M14 10V4a2 2 0 0 0-4 0v2\"/><path d=\"M10 10.5V6a2 2 0 0 0-4 0v8\"/><path d=\"M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15\"/></svg>Take this one</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 8px 16px; border-radius: 10px; font: 500 0.875rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; cursor: pointer; border: 1px solid transparent; transition: background-color 150ms, color 150ms; } .ds-btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-btn:disabled { opacity: 0.5; pointer-events: none; } .ds-btn-primary { background: var(--primary); color: var(--primary-foreground); } .ds-btn-primary:hover { background: color-mix(in srgb, var(--primary) 90%, transparent); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Alternative outcomes (False alarm, Reopen) and Try again.",
+      "html": "<button class=\"ds-btn-outline\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>False alarm</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 8px 16px; border-radius: 10px; border: 1px solid var(--input); background: var(--background); color: var(--foreground); font: 500 0.875rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: background-color 150ms; } .ds-btn-outline:hover { background: var(--accent); color: var(--accent-foreground); } .ds-btn-outline:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }"
+    },
+    {
+      "name": "On-shell Button",
+      "kind": "button",
+      "refersTo": "button-on-shell",
+      "description": "Ask the data, lit against the petrol band.",
+      "html": "<div class=\"ds-shellwrap\"><button class=\"ds-btn-shell\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/><path d=\"M13 8H7\"/><path d=\"M17 12H7\"/></svg>Ask the data</button></div>",
+      "css": ".ds-shellwrap { background: var(--shell); padding: 16px; } .ds-btn-shell { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 8px 16px; border: 0; border-radius: 10px; background: var(--shell-foreground); color: var(--shell); font: 500 0.875rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: background-color 150ms; } .ds-btn-shell:hover { background: #fff; } .ds-btn-shell:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Select",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Labelled select in the filter row.",
+      "html": "<label class=\"ds-field\">Plant<select class=\"ds-select\"><option>All plants</option><option>Bremen</option></select></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 4px; font: 500 0.8125rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; color: var(--muted-foreground); } .ds-select { height: 36px; min-width: 11rem; padding: 0 12px; border: 1px solid var(--input); border-radius: 10px; background: var(--card); color: var(--foreground); font: 400 0.9375rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; transition: border-color 150ms; } .ds-select:hover { border-color: color-mix(in srgb, var(--foreground) 50%, transparent); } .ds-select:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Pills",
+      "kind": "chip",
+      "refersTo": "pill-claimed",
+      "description": "Open (outlined), claimed (amber wash, owner name), resolved (green wash).",
+      "html": "<span class=\"ds-pill ds-pill-open\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></svg>Open</span> <span class=\"ds-pill ds-pill-claimed\">Priya S.</span> <span class=\"ds-pill ds-pill-resolved\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg>Resolved</span>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 9999px; font: 500 0.8125rem 'Geist Variable', ui-sans-serif, system-ui, sans-serif; } .ds-pill-open { border: 1px solid var(--border); color: var(--muted-foreground); } .ds-pill-claimed { background: var(--signal-soft); color: var(--signal-ink); } .ds-pill-resolved { background: var(--success-soft); color: var(--success); }"
+    },
+    {
+      "name": "Work Surface",
+      "kind": "card",
+      "refersTo": "surface-card",
+      "description": "Queue and detail container: white card, hairline border, one soft lift.",
+      "html": "<article class=\"ds-surface\"><h3 class=\"ds-surface-id\">MC0027</h3><p class=\"ds-surface-meta\">Injection Moulder · Rochester · line L5</p><dl class=\"ds-facts\"><div><dt>Vibration, 7d</dt><dd>6.84 mm/s</dd></div><div><dt>Output vs plan</dt><dd>80%</dd></div></dl></article>",
+      "css": ".ds-surface { border-radius: 14px; border: 1px solid var(--border); background: var(--card); color: var(--card-foreground); padding: 20px; box-shadow: 0 1px 2px rgb(15 30 38 / 0.05), 0 6px 16px -8px rgb(15 30 38 / 0.10); font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; font-feature-settings: 'tnum' 1; } .ds-surface-id { margin: 0; font: 600 1.25rem 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: -0.025em; } .ds-surface-meta { margin: 0; font-size: 0.9375rem; color: var(--muted-foreground); } .ds-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; margin: 16px 0 0; padding: 12px; border-radius: 10px; background: color-mix(in srgb, var(--muted) 60%, transparent); } .ds-facts dt { font-size: 0.8125rem; color: var(--muted-foreground); } .ds-facts dd { margin: 0; font-size: 1rem; font-weight: 600; }"
+    },
+    {
+      "name": "Queue Rows with Score Bar and Capacity Cut",
+      "kind": "custom",
+      "refersTo": "capacity-line",
+      "description": "Signature: ranked rows with inline 0–100 score bars, the selected-row amber bar, and the labelled crew-capacity cut after rank 20; rows below fade.",
+      "html": "<div class=\"ds-queue\" role=\"listbox\"><div class=\"ds-row ds-row-sel\" role=\"option\" aria-selected=\"true\" tabindex=\"0\"><span class=\"ds-rank\">20</span><span><span class=\"ds-id\">MC0081</span><span class=\"ds-sub\">Bremen · L7</span></span><span class=\"ds-reason\">Vibration up 11.3% on the prior week</span><span class=\"ds-score\"><span class=\"ds-track\"><span class=\"ds-fill\" style=\"width:93%\"></span></span><b>93</b></span></div><div class=\"ds-cut\" role=\"separator\"><span></span><em>Crew capacity · 20 machines today</em><span></span></div><div class=\"ds-row ds-row-beyond\" role=\"option\" aria-selected=\"false\" tabindex=\"-1\"><span class=\"ds-rank\">21</span><span><span class=\"ds-id\">MC0316</span><span class=\"ds-sub\">Querétaro · L4</span></span><span class=\"ds-reason\">0.80 serious defects per 1k units</span><span class=\"ds-score\"><span class=\"ds-track\"><span class=\"ds-fill\" style=\"width:92%\"></span></span><b>92</b></span></div></div>",
+      "css": ".ds-queue { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--card); font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif; font-feature-settings: 'tnum' 1; color: var(--foreground); } .ds-row { position: relative; display: grid; grid-template-columns: 1.75rem 6.25rem minmax(0,1fr) 6.5rem; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.9375rem; cursor: pointer; transition: background-color 150ms; } .ds-row:hover { background: color-mix(in srgb, var(--muted) 70%, transparent); } .ds-row:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; } .ds-row-sel, .ds-row-sel:hover { background: var(--signal-soft); } .ds-row-sel::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--signal-strong); } .ds-rank { font-size: 0.8125rem; font-weight: 500; color: color-mix(in srgb, var(--foreground) 80%, transparent); } .ds-row-beyond .ds-rank { color: var(--muted-foreground); } .ds-id { display: block; font: 500 0.9375rem 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: -0.025em; } .ds-sub { display: block; font-size: 0.8125rem; color: var(--muted-foreground); } .ds-reason { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-score { display: flex; align-items: center; gap: 10px; } .ds-track { position: relative; height: 6px; width: 100%; max-width: 56px; border-radius: 9999px; background: var(--track); overflow: hidden; } .ds-fill { position: absolute; inset: 0 auto 0 0; border-radius: 9999px; background: var(--chart-1); } .ds-row-beyond .ds-fill { background: var(--chart-3); } .ds-score b { width: 2rem; text-align: right; font-size: 1rem; font-weight: 600; } .ds-cut { display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: color-mix(in srgb, var(--muted) 60%, transparent); } .ds-cut span { flex: 1; height: 1px; background: color-mix(in srgb, var(--signal-strong) 70%, transparent); } .ds-cut em { font-style: normal; font-size: 0.8125rem; font-weight: 500; color: var(--signal-ink); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shift Plan",
+    "overview": "This is the morning's inspection plan pinned to the board, not a monitoring dashboard. A deep petrol band carries the title and the day's numbers. Below it sits a cool white ground with white work surfaces: a ranked list on the left and the selected machine on the right. The page reads as one sheet of work. The list is cut at what one crew can inspect today, and everything above the cut is the day's job.\n\nDensity is high and calm. Hairline dividers separate rows. Numbers use tabular figures and sit next to a plain-language reason. Amber is the only attention colour: it marks the selected row, claimed work, the model's top picks and the capacity cut. Green means resolved and red means critical or failed. Light is the default because it reads best on a projector and on a lit shop floor. Dark mode is a full remap of the same roles, not a different world.",
+    "keyCharacteristics": [
+      "Petrol shell band (header and KPI strip) over a cool white working ground.",
+      "One attention hue (amber); green only for resolved; red only for critical and errors.",
+      "Geist for everything; Geist Mono for machine identity and SQL.",
+      "KPI tiles are filter buttons, not vanity tiles.",
+      "Inline score bars on a shared 0–100 track, and a labelled crew-capacity cut line.",
+      "Pill badges, hairline dividers, tabular numerals, one soft surface shadow."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Amber is the only attention colour. It means \"look here\": selected, claimed, the model's top pick, or the capacity cut. Never use it for decoration or for state that isn't attention.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reserved Red Rule",
+        "body": "Red appears only for critical and failure. A high score is never red; urgency is shown by rank and position above the cut.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Means Identity Rule",
+        "body": "Geist Mono is used for machine IDs and for SQL (the query Genie ran and its raw result cells). Readings, scores and percentages stay in Geist with tabular figures.",
+        "section": "typography"
+      },
+      {
+        "name": "The Projector Floor Rule",
+        "body": "0.8125rem is the smallest text in the core surface. It has to stay legible from the back of a room.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Lift Rule",
+        "body": "Work surfaces share one soft shadow. Elements on the band (tiles, buttons) are not lifted; they separate by tone and hairline borders.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put the shell band in Deep Petrol and keep the working ground Cool Ground with white Work Surfaces.",
+      "Do keep amber for attention only (selected, claimed, model top 20, the capacity cut), per The One Signal Rule.",
+      "Do make summary counts into `aria-pressed` filter buttons that invert to Shell Paper with an amber border when active.",
+      "Do draw scores as an inline bar on the shared 0–100 Track, and fade rows below the capacity cut to Quiet Slate.",
+      "Do set every number in tabular figures, and put the plain-words reason before the number.",
+      "Do use Geist Mono only for machine IDs and SQL.",
+      "Do keep text at 0.8125rem or larger and use 600 weight for figures.",
+      "Do define every new colour as a role in both `:root` and `.dark`."
+    ],
+    "donts": [
+      "Don't use red for high scores or urgency; red is for critical and failure only.",
+      "Don't add a second accent hue or tint the ground with petrol; petrol belongs to the shell band and to primary actions.",
+      "Don't add uppercase eyebrow labels or kickers above headings; labels are sentence-case 0.8125rem.",
+      "Don't add hard or offset shadows, or stack shadows on elements on the band; there is one soft work-surface lift.",
+      "Don't show the capacity cut line on a filtered list, and don't renumber ranks when a filter narrows the list."
+    ]
+  }
+}
