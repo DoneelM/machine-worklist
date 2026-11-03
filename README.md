@@ -112,6 +112,10 @@ It's **a tie**, so the rule stays in charge of the ranking. Interestingly, the t
 
 **Saving actions (Lakebase).** Claims, notes and outcomes are written to `worklist.machine_actions` (current state) and `worklist.action_log` (history). When someone presses *Found an issue* or *False alarm*, the model's risk at that moment is stored too. Over time those become **real labels** for checking whether the model helps on a real plant floor.
 
+**Viewing the Lakebase tables yourself.** The app owns the `worklist` schema, so it gives read-only access to everyone listed in `WORKLIST_READ_ROLES` in `app.yml` each time it starts. To add someone: create their Lakebase role (`databricks postgres create-role projects/machine-worklist/branches/production ...`, identity type `USER`), add their email to that list, then redeploy. Then you can query either way:
+- **Terminal:** `databricks-me psql --project machine-worklist -- -c "select * from worklist.action_log order by created_at desc"`
+- **Workspace:** open **Lakebase** (the Postgres projects page) → project `machine-worklist` → branch `production` → **SQL editor**.
+
 **Who sees what.** The worklist reads data as the app. The chat runs **as the signed-in user**, so Genie only shows data that person is allowed to read.
 
 ---
